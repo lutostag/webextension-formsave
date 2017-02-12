@@ -1,7 +1,9 @@
 document.querySelector(".clear").addEventListener('click', read);
 
 function read() {
-    var values = JSON.stringify(browser.storage.local.get(null));
-    document.querySelector("textarea").value = values;
+    var reading = browser.storage.local.get();
+    reading.then((results) => {
+        document.querySelector("textarea").value = JSON.stringify(results);
+    });
 }
 

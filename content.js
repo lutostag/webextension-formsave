@@ -1,13 +1,10 @@
-console.log('setting up');
 var textareas = document.querySelectorAll("textarea");
 textareas.forEach(function(textarea) {
-    textarea.addEventListener('click', changeHandler);
+    textarea.addEventListener('input', changeHandler, false);
 });
-console.log(textareas.length);
 
 function changeHandler(calledEvent) {
-    console.log('changed');
-    target = calledEvent.target;
+    var target = calledEvent.target;
     var item = {
         url: document.URL,
         id: target.id,
@@ -15,7 +12,5 @@ function changeHandler(calledEvent) {
         content: target.value
     };
     var key = item.url + '##' + item.id;
-    console.log(key);
-    console.log(item);
     browser.storage.local.set({[key]: item});
 }
