@@ -1,7 +1,9 @@
-var textareas = document.querySelectorAll("textarea");
-textareas.forEach(function(textarea) {
-    textarea.addEventListener('input', changeHandler, false);
+var texts = document.querySelectorAll('textarea', 'div[contenteditable="true"]');
+texts.forEach(function(text) {
+    text.addEventListener('input', changeHandler, false);
+    text.addEventListener('change', changeHandler);
 });
+
 
 function changeHandler(calledEvent) {
     var target = calledEvent.target;

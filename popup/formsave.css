@@ -1,0 +1,5 @@
+tbody {
+    height: 300px;
+    overflow: scroll;
+    width: 600px;
+}
