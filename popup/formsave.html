@@ -8,26 +8,28 @@
 
     <body>
         <div class="outer-wrapper">
-            <div class="selections">
-                <table>
-                    <thead>
+            <div>
+                <div class="flex-container">
+                    <table class="flex-item header">
                         <tr>
                             <td>url</td>
                             <td>id</td>
                             <td>date</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-            <div class="selected">
-                <textarea rows="10" cols="50" readonly></textarea>
-            </div>
-            <div class="buttons">
-                <button class="refresh">Refresh</button>
-                <button class="clear">Clear</button>
-                <button class="clear-all">Clear all</button>
+                    </table>
+                    <div class="flex-item">
+                        <table id="selection-table">
+                        </table>
+                    </div>
+                </div>
+                <div class="selected">
+                    <textarea readonly></textarea>
+                </div>
+                <div class="buttons">
+                    <button class="refresh">Refresh</button>
+                    <button class="clear">Clear</button>
+                    <button class="clear-all">Clear all</button>
+                </div>
             </div>
         </div>
 

@@ -1,7 +1,7 @@
 document.querySelector(".refresh").addEventListener('click', refresh);
 document.querySelector(".clear").addEventListener('click', clear);
 document.querySelector(".clear-all").addEventListener('click', clearAll);
-var tableContainer = document.querySelector("tbody");
+var tableContainer = document.querySelector("#selection-table");
 
 var selected = '';
 refresh();
@@ -16,6 +16,7 @@ function refresh() {
             var tr = document.createElement('tr');
             var url = document.createElement('td');
             url.textContent = results[result].url.slice(0, 30);
+            url.title = results[result].url;
             url.id = result;
             var id = document.createElement('td');
             id.textContent = results[result].id.slice(0, 10);
