@@ -8,9 +8,9 @@ refresh();
 
 function refresh() {
     var reading = browser.storage.local.get();
-    while (tableContainer.firstChild) {
+    /*while (tableContainer.firstChild) {
         tableContainer.removeChild(tableContainer.firstChild);
-    }
+    }*/
     reading.then((results) => {
         Object.keys(results).forEach(function(result) {
             var tr = document.createElement('tr');
