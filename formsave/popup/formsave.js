@@ -1,7 +1,7 @@
-document.querySelector(".refresh").addEventListener('click', refresh);
-document.querySelector(".clear").addEventListener('click', clear);
-document.querySelector(".clear-all").addEventListener('click', clearAll);
-var tableContainer = document.querySelector("#selection-table");
+document.querySelector('.refresh').addEventListener('click', refresh);
+document.querySelector('.clear').addEventListener('click', clear);
+document.querySelector('.clear-all').addEventListener('click', clearAll);
+var tableContainer = document.querySelector('#selection-table');
 
 var selected = '';
 refresh();
@@ -38,7 +38,7 @@ function changeSelection(calledEvent) {
     selected = calledEvent.target.id;
     var reading = browser.storage.local.get(selected);
     reading.then((results) => {
-        document.querySelector("textarea").value = results[selected].content;
+        document.querySelector('textarea').value = results[selected].content;
     });
 }
 

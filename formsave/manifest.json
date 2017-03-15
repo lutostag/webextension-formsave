@@ -26,5 +26,11 @@
             "matches": ["<all_urls>"],
             "js": ["content.js"]
         }
-    ]
+    ],
+
+    "applications": {
+        "gecko": {
+            "id": "{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}" 
+        }
+    }
 }
