@@ -1,18 +1,17 @@
-var texts = document.querySelectorAll('textarea', 'div[contenteditable="true"]');
-texts.forEach(function(text) {
-    text.addEventListener('input', changeHandler, false);
-    text.addEventListener('change', changeHandler);
-});
+let texts = document.querySelectorAll('textarea', 'div[contenteditable="true"]')
+texts.forEach((text) => {
+  text.addEventListener('input', changeHandler, false)
+  text.addEventListener('change', changeHandler)
+})
 
-
-function changeHandler(calledEvent) {
-    var target = calledEvent.target;
-    var item = {
-        url: document.URL,
-        id: target.id,
-        time: new Date(),
-        content: target.value
-    };
-    var key = item.url + '##' + item.id;
-    browser.storage.local.set({[key]: item});
+function changeHandler (calledEvent) {
+  let target = calledEvent.target
+  let item = {
+    url: document.URL,
+    id: target.id,
+    time: new Date(),
+    content: target.value
+  }
+  let key = item.url + '##' + item.id
+  browser.storage.local.set({[key]: item})
 }
