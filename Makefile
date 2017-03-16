@@ -1,18 +1,23 @@
-.PHONY: build-deps lint test build 
+.PHONY: all build-deps lint test try tag build release 
 
 all: build
 
-build-deps:
-	@which standard >/dev/null
-	@which web-ext >/dev/null
-
-lint: build-deps
-	standard --global browser
-	web-ext lint -s formsave
-
 test: lint
+	@echo "still need testing"
 
-build: test
+try: lint
+	web-ext run -s formsave -a .
 
-release: build
+tag: lint
+	test -z "$(git status --porcelain)"
+	test -n "$TAG" || { echo -n 'tag: '; read TAG }
+	sed -i 's/"version": "[^"]*"/"version": "'"$TAG"'"/' formsave/manifest.json
+	git commit -am "Update version for release $TAG"
+	git tag "$TAG"
 
+build: lint
+	test -z "$(git status --porcelain)"
+	web-ext build -s formsave -a .
+
+release: tag build
+	web-ext sign -s formsave -a .

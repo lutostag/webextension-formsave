@@ -1,36 +1,46 @@
 {
-
     "manifest_version": 2,
     "name": "FormSave",
     "version": "0.9.1",
-
     "description": "Automatically saves the users forms, and allows the user to view saved forms by ckicking on a button.",
     "icons": {
         "48": "icons/icon.svg"
     },
-
     "permissions": [
         "storage"
-    ], 
-
+    ],
     "browser_action": {
         "default_icon": {
-            "32" : "icons/icon.svg"
+            "32": "icons/icon.svg"
         },
         "default_title": "FormSave",
         "default_popup": "popup/formsave.html"
     },
-
     "content_scripts": [
         {
-            "matches": ["<all_urls>"],
-            "js": ["content.js"]
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ]
         }
     ],
-
     "applications": {
         "gecko": {
-            "id": "{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}" 
+            "id": "{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}"
         }
+    },
+    "license": "GPL-3.0",
+    "scripts": {
+        "pretest": "standard --global browser; web-ext lint -s formsave",
+        "debug": "web-ext run -s formsave -a .",
+        "preversion": "npm test",
+        "postversion": "git commit -am \"Update version for release $TAG\"; git tag \"$TAG\"",
+        "release": "web-ext sign -s formsave -a ."
+    },
+    "devDependencies": {
+        "standard": "*",
+        "web-ext": "*"
     }
 }
