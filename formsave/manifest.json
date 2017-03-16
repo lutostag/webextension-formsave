@@ -35,8 +35,7 @@
     "scripts": {
         "pretest": "standard --global browser; web-ext lint -s formsave",
         "debug": "web-ext run -s formsave -a .",
-        "preversion": "npm test",
-        "postversion": "git commit -am \"Update version for release $TAG\"; git tag \"$TAG\"",
+        "preversion": "test -z \"$(git status --porcelain)\" && npm test",
         "release": "web-ext sign -s formsave -a ."
     },
     "devDependencies": {
