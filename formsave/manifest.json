@@ -1,45 +1,52 @@
 {
-    "manifest_version": 2,
-    "name": "FormSave",
-    "version": "0.9.1",
-    "description": "Automatically saves the users forms, and allows the user to view saved forms by ckicking on a button.",
-    "icons": {
-        "48": "icons/icon.svg"
+  "manifest_version": 2,
+  "name": "FormSave",
+  "version": "0.9.1",
+  "description": "Automatically saves the users forms, and allows the user to view saved forms by ckicking on a button.",
+  "icons": {
+    "48": "icons/icon.svg"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "32": "icons/icon.svg"
     },
-    "permissions": [
-        "storage"
-    ],
-    "browser_action": {
-        "default_icon": {
-            "32": "icons/icon.svg"
-        },
-        "default_title": "FormSave",
-        "default_popup": "popup/formsave.html"
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "content.js"
-            ]
-        }
-    ],
-    "applications": {
-        "gecko": {
-            "id": "{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}"
-        }
-    },
-    "license": "GPL-3.0",
-    "scripts": {
-        "pretest": "standard --global browser; web-ext lint -s formsave",
-        "debug": "web-ext run -s formsave -a .",
-        "preversion": "test -z \"$(git status --porcelain)\" && npm test",
-        "release": "web-ext sign -s formsave -a ."
-    },
-    "devDependencies": {
-        "standard": "*",
-        "web-ext": "*"
+    "default_title": "FormSave",
+    "default_popup": "popup/formsave.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
     }
+  ],
+  "applications": {
+    "gecko": {
+      "id": "{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}"
+    }
+  },
+  "license": "GPL-3.0",
+  "scripts": {
+    "lint": "standard --global browser formsave/**/*.js && web-ext lint -w -s formsave",
+    "build": "web-ext build -s formsave -a .",
+    "pretest": "npm run lint && webdriver-manager update",
+    "test": "npm build && webdriver-manager start & sleep 5; wdio; kill -9 %1",
+    "debug": "web-ext run -s formsave -a .",
+    "preversion": "test -z \"$(git status --porcelain)\" && npm test",
+    "release": "web-ext sign -s formsave -a ."
+  },
+  "devDependencies": {
+    "standard": "*",
+    "wdio-dot-reporter": "0.0.8",
+    "wdio-jasmine-framework": "^0.3.0",
+    "web-ext": "git+https://github.com/lutostag/web-ext.git#selenium_arg_passthrough_dist",
+    "webdriver-manager": "^12.0.4",
+    "webdriverio": "^4.6.2"
+  }
 }
