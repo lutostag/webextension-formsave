@@ -1,15 +1,8 @@
-var webdriverio = require('webdriverio');
-var options = {
-    desiredCapabilities: {
-        browserName: 'firefox'
-    }
-};
+const assert = require('assert')
 
-webdriverio
-    .remote(options)
-    .init()
-    .url('http://www.google.com')
-    .title().then(function (title) {
-        console.log('Title was: ' + title.value);
+describe('extension tests', function(){
+    it('moz-extension url reachable',function() {
+        browser.url('moz-extension://88de8cc8-d1ce-484a-bd9f-dd0b100cf262/icons/icon.svg')
+        assert(browser.element('svg').value !== null)
     })
-.end();
+})

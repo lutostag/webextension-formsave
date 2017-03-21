@@ -35,8 +35,8 @@
   "scripts": {
     "lint": "standard --global browser formsave/**/*.js && web-ext lint -w -s formsave",
     "build": "web-ext build -s formsave -a .",
-    "pretest": "npm run lint && webdriver-manager update",
-    "test": "npm build && webdriver-manager start & sleep 5; wdio; kill -9 %1",
+    "pretest": "npm run lint",
+    "test": "wdio",
     "debug": "web-ext run -s formsave -a .",
     "preversion": "test -z \"$(git status --porcelain)\" && npm test",
     "release": "web-ext sign -s formsave -a ."
@@ -44,9 +44,10 @@
   "devDependencies": {
     "standard": "*",
     "wdio-dot-reporter": "0.0.8",
-    "wdio-jasmine-framework": "^0.3.0",
-    "web-ext": "git+https://github.com/lutostag/web-ext.git#selenium_arg_passthrough_dist",
-    "webdriver-manager": "^12.0.4",
+    "wdio-firefox-profile-service": "0.0.2",
+    "wdio-mocha-framework": "^0.5.9",
+    "wdio-selenium-standalone-service": "0.0.8",
+    "web-ext": "*",
     "webdriverio": "^4.6.2"
   }
 }
