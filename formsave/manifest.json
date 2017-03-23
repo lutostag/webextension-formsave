@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "FormSave",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Automatically saves the users forms, and allows the user to view saved forms by ckicking on a button.",
   "icons": {
     "48": "icons/icon.svg"
