@@ -39,6 +39,7 @@
     "test": "wdio",
     "debug": "web-ext run -s formsave -a .",
     "preversion": "test -z \"$(git status --porcelain)\" && npm test",
+    "version": "git add formsave/manifest.json",
     "release": "web-ext sign -s formsave -a ."
   },
   "devDependencies": {
