@@ -20,20 +20,11 @@ class Table {
   }
   createRow (uniq, item) {
     let tr = document.createElement('tr')
-    let url = document.createElement('td')
-    url.textContent = item.url.slice(0, 30)
-    url.title = item.url
-    url.id = uniq
-    let id = document.createElement('td')
-    id.textContent = item.id.slice(0, 10)
-    id.id = uniq
-    let time = document.createElement('td')
-    time.textContent = item.time
-    time.id = uniq
-    tr.appendChild(url)
-    tr.appendChild(id)
-    tr.appendChild(time)
+    let template = `<td title="${item.url}" id="${uniq}">${item.url.slice(0, 30)}</td>` +
+      `<td id="${uniq}">${item.id.slice(0, 10)}</td>` +
+      `<td id="${uniq}">${item.time}</td>`
     tr.id = uniq
+    tr.insertAdjacentHTML('afterbegin', template);
     tableContainer.appendChild(tr)
     tr.addEventListener('click', this.select)
   }
