@@ -1,1 +1,53 @@
-formsave/manifest.json
+{
+  "manifest_version": 2,
+  "name": "FormSave",
+  "version": "0.9.2",
+  "description": "Automatically saves the users forms, and allows the user to view saved forms by ckicking on a button.",
+  "icons": {
+    "48": "icons/icon.svg"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "32": "icons/icon.svg"
+    },
+    "default_title": "FormSave",
+    "default_popup": "popup/formsave.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "applications": {
+    "gecko": {
+      "id": "{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}"
+    }
+  },
+  "license": "GPL-3.0",
+  "scripts": {
+    "lint": "standard --global browser && web-ext lint -w -s formsave",
+    "build": "web-ext build -s formsave -a .",
+    "pretest": "npm run lint",
+    "test": "wdio",
+    "debug": "web-ext run -s formsave -a .",
+    "preversion": "test -z \"$(git status --porcelain)\" && npm test",
+    "release": "web-ext sign -s formsave -a ."
+  },
+  "devDependencies": {
+    "standard": "^9.0.2",
+    "wdio-dot-reporter": "0.0.8",
+    "wdio-firefox-profile-service": "0.0.2",
+    "wdio-mocha-framework": "^0.5.9",
+    "wdio-selenium-standalone-service": "0.0.8",
+    "web-ext": "^1.8.1",
+    "webdriverio": "^4.6.2"
+  }
+}
