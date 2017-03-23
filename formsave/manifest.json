@@ -33,7 +33,7 @@
   },
   "license": "GPL-3.0",
   "scripts": {
-    "lint": "standard --global browser formsave/**/*.js && web-ext lint -w -s formsave",
+    "lint": "standard --global browser && web-ext lint -w -s formsave",
     "build": "web-ext build -s formsave -a .",
     "pretest": "npm run lint",
     "test": "wdio",
@@ -42,12 +42,12 @@
     "release": "web-ext sign -s formsave -a ."
   },
   "devDependencies": {
-    "standard": "*",
+    "standard": "^9.0.2",
     "wdio-dot-reporter": "0.0.8",
     "wdio-firefox-profile-service": "0.0.2",
     "wdio-mocha-framework": "^0.5.9",
     "wdio-selenium-standalone-service": "0.0.8",
-    "web-ext": "*",
+    "web-ext": "^1.8.1",
     "webdriverio": "^4.6.2"
   }
 }
