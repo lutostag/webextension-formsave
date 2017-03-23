@@ -24,7 +24,7 @@ class Table {
       `<td id="${uniq}">${item.id.slice(0, 10)}</td>` +
       `<td id="${uniq}">${item.time}</td>`
     tr.id = uniq
-    tr.insertAdjacentHTML('afterbegin', template);
+    tr.insertAdjacentHTML('afterbegin', template)
     tableContainer.appendChild(tr)
     tr.addEventListener('click', this.select)
   }
