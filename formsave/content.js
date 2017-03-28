@@ -1,7 +1,9 @@
+/* global _ */
+
 let texts = document.querySelectorAll('textarea', 'div[contenteditable="true"]')
 for (let text of texts) {
-  text.addEventListener('input', changeHandler, false)
-  text.addEventListener('change', changeHandler)
+  text.addEventListener('input', _.debounce(changeHandler, 200), false)
+  text.addEventListener('change', _.debounce(changeHandler, 200))
 }
 
 function changeHandler (calledEvent) {

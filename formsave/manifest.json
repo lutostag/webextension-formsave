@@ -22,6 +22,7 @@
         "<all_urls>"
       ],
       "js": [
+        "lib/lodashDebounce.min.js",
         "content.js"
       ]
     }

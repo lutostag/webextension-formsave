@@ -1,34 +1,41 @@
+/* global vagueTime */
+
 let tableContainer = document.querySelector('#selection-table')
 let textarea = document.querySelector('textarea')
+
+function shortTime (timestamp) {
+  return timestamp.replace(/T/, ' ').slice(0, 16)
+}
 
 class Table {
   constructor () {
     this.selected = ''
     this.refresh()
   }
-  remove () {
+  remove (calledEvent) {
     browser.storage.local.remove(this.selected)
     this.refresh()
   }
-  removeAll () {
+  removeAll (calledEvent) {
     browser.storage.local.clear()
     this.clear()
   }
-  clear () {
+  clear (calledEvent) {
     while (tableContainer.firstChild) {
       tableContainer.removeChild(tableContainer.firstChild)
     }
+    textarea.value = ''
   }
   createRow (uniq, item) {
     let row = document.createElement('div')
     row.id = uniq
     row.className = 'container'
     let template = `<div title="${item.url}" class="item clip">${item.url}</div>` +
-      `<div class="item clip pad">${item.id}</div>` +
-      `<div class="item">${item.time}</div>`
+      `<div class="item clip center">${item.id}</div>` +
+      `<div title="${shortTime(item.time)}" class="item clip right">${vagueTime.get({to: new Date(item.time)})}</div>`
     row.insertAdjacentHTML('afterbegin', template)
     tableContainer.appendChild(row)
-    row.addEventListener('click', this.select)
+    row.addEventListener('click', this.select.bind(this))
   }
   select (calledEvent) {
     this.selected = calledEvent.target.parentElement.id
@@ -37,7 +44,7 @@ class Table {
       textarea.value = results[this.selected].content
     })
   }
-  refresh () {
+  refresh (calledEvent) {
     let reading = browser.storage.local.get()
     reading.then((results) => {
       this.clear()
@@ -50,6 +57,6 @@ class Table {
 }
 
 let table = new Table()
-document.querySelector('.refresh').addEventListener('click', table.refresh)
-document.querySelector('.clear').addEventListener('click', table.remove)
-document.querySelector('.clear-all').addEventListener('click', table.removeAll)
+document.querySelector('.refresh').addEventListener('click', table.refresh.bind(table))
+document.querySelector('.clear').addEventListener('click', table.remove.bind(table))
+document.querySelector('.clear-all').addEventListener('click', table.removeAll.bind(table))

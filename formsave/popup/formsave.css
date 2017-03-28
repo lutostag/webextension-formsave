@@ -1,8 +1,19 @@
-@media all and (min-width: 600px) {
+@media all and (max-width: 450px) {
+    /* when in menu */
     .box {
-        display: block;
+        width: 412px;
+    }
+}
+
+@media all and (max-width: 400px), (min-width: 600px) {
+    /* when in toolbar or fullscreen */
+    .box {
         width: 600px;
     }
+}
+
+.box {
+    display: block;
 }
 
 textarea {
@@ -15,7 +26,6 @@ textarea {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
     width: 100%;
     background-color: #eeeeee;
     border-bottom: 1px solid black;
@@ -42,6 +52,11 @@ textarea {
     white-space: nowrap;
 }
 
-.pad {
+.center {
+    text-align: center;
     padding: 0px 10px;
+}
+
+.right {
+    text-align: right;
 }
