@@ -1,48 +1,47 @@
+@media all and (min-width: 600px) {
+    .box {
+        display: block;
+        width: 600px;
+    }
+}
+
 textarea {
     resize: none;
     height: 100px;
-    width: 598px;
-    padding: 0;
-}
-
-table {
     width: 100%;
-    border-collapse: collapse;
 }
 
-.header {
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
-    flex: 1;
-}
-
-.header tr td {
-    width: 33.33%;
-}
-
-#selection-table tr td {
-    border-top: 1px solid black;
+    background-color: #eeeeee;
     border-bottom: 1px solid black;
 }
 
-.outer-wrapper {
-    display: flex;
-    width: 600px;
-    max-height: 400px;
+.bold {
+    font-weight: bold;
+    text-align: center;
 }
 
-.flex-container {
-    box-sizing: border-box;
-    width: 600px;
-    align-self: center;
-    background-color: #eeeeee;
-    display: flex;
-    flex-flow: column;
-    max-height: 400px;
-}
-
-.flex-item {
-    width: 600px;
-    flex: 1;
+.content {
     max-height: 400px;
     overflow: auto;
+}
+
+.item {
+    flex-basis: 33%;
+    box-shadow: 0 0 0 1px 0 black;
+    height: 1.2em;
+}
+
+.clip {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.pad {
+    padding: 0px 10px;
 }

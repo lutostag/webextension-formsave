@@ -1,4 +1,5 @@
 let tableContainer = document.querySelector('#selection-table')
+let textarea = document.querySelector('textarea')
 
 class Table {
   constructor () {
@@ -19,20 +20,21 @@ class Table {
     }
   }
   createRow (uniq, item) {
-    let tr = document.createElement('tr')
-    let template = `<td title="${item.url}" id="${uniq}">${item.url.slice(0, 30)}</td>` +
-      `<td id="${uniq}">${item.id.slice(0, 10)}</td>` +
-      `<td id="${uniq}">${item.time}</td>`
-    tr.id = uniq
-    tr.insertAdjacentHTML('afterbegin', template)
-    tableContainer.appendChild(tr)
-    tr.addEventListener('click', this.select)
+    let row = document.createElement('div')
+    row.id = uniq
+    row.className = 'container'
+    let template = `<div title="${item.url}" class="item clip">${item.url}</div>` +
+      `<div class="item clip pad">${item.id}</div>` +
+      `<div class="item">${item.time}</div>`
+    row.insertAdjacentHTML('afterbegin', template)
+    tableContainer.appendChild(row)
+    row.addEventListener('click', this.select)
   }
   select (calledEvent) {
-    this.selected = calledEvent.target.id
+    this.selected = calledEvent.target.parentElement.id
     let reading = browser.storage.local.get(this.selected)
     reading.then((results) => {
-      document.querySelector('textarea').value = results[this.selected].content
+      textarea.value = results[this.selected].content
     })
   }
   refresh () {

@@ -6,33 +6,26 @@
         <link rel="stylesheet" href="formsave.css"/>
     </head>
 
-    <body>
-        <div class="outer-wrapper">
-            <div>
-                <div class="flex-container">
-                    <table class="flex-item header">
-                        <tr>
-                            <td>url</td>
-                            <td>id</td>
-                            <td>date</td>
-                        </tr>
-                    </table>
-                    <div class="flex-item">
-                        <table id="selection-table">
-                        </table>
-                    </div>
-                </div>
-                <div class="selected">
-                    <textarea readonly></textarea>
-                </div>
-                <div class="buttons">
-                    <button class="refresh">Refresh</button>
-                    <button class="clear">Clear</button>
-                    <button class="clear-all">Clear all</button>
+<body>
+        <div class="box">
+            <div class="container">
+                <div class="item bold">url</div>
+                <div class="item bold">id</div>
+                <div class="item bold">date</div>
+            </div>
+            <div class="content">
+                <div id="selection-table">
                 </div>
             </div>
+            <div class="selected">
+                <textarea readonly></textarea>
+            </div>
+            <div class="buttons">
+                <button class="refresh">Refresh</button>
+                <button class="clear">Clear</button>
+                <button class="clear-all">Clear all</button>
+            </div>
         </div>
-
         <script src="formsave.js"></script>
     </body>
 
