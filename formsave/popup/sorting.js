@@ -2,7 +2,6 @@
 
 const FuzzySearch = require('fuzzy-search')
 
-
 class TableSorter { // eslint-disable-line
   constructor (callback) {
     this.callback = callback

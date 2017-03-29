@@ -59,7 +59,13 @@ class Table {
   }
 }
 
+function copyToClipboard () {
+  textarea.select()
+  document.execCommand('Copy')
+}
+
 let table = new Table()
 document.querySelector('.refresh').addEventListener('click', table.refresh.bind(table))
 document.querySelector('.clear').addEventListener('click', table.remove.bind(table))
 document.querySelector('.clear-all').addEventListener('click', table.removeAll.bind(table))
+document.querySelector('.copy').addEventListener('click', copyToClipboard)
