@@ -1,4 +1,7 @@
-/* global vagueTime, TableSorter, _ */
+/* global _, TableSorter */
+
+const vagueTime = require('vague-time')
+const escapeHTML = require('escape-html-template-tag')
 
 let tableContainer = document.querySelector('#selection-table')
 let textarea = document.querySelector('textarea')
@@ -29,11 +32,11 @@ class Table {
   }
   createRow (item) {
     let row = document.createElement('div')
-    row.id = item.uniq
+    row.id = _.escape(item.uniq)
     row.className = 'container'
-    let template = `<div title="${item.url}" class="item clip">${item.url}</div>` +
-      `<div class="item clip center">${item.id}</div>` +
-      `<div title="${shortTime(item.time)}" class="item clip right">${vagueTime.get({to: new Date(item.time)})}</div>`
+    let template = escapeHTML`<div title="${item.url}" class="item clip">${item.url}</div>
+      <div class="item clip center">${item.id}</div>
+      <div title="${shortTime(item.time)}" class="item clip right">${vagueTime.get({to: new Date(item.time)})}</div>`
     row.insertAdjacentHTML('afterbegin', template)
     tableContainer.appendChild(row)
     row.addEventListener('click', this.select.bind(this))

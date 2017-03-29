@@ -37,7 +37,7 @@
     "lint": "standard --global browser && web-ext lint -w -s formsave",
     "pretest": "npm run lint",
     "test": "wdio",
-    "prepare": "mkdir -p formsave/lib && cp node_modules/fuse.js/src/fuse.min.js formsave/lib && cp node_modules/vague-time/src/vagueTime.min.js formsave/lib && lodash include=debounce,reverse,sortBy,values -s -p -o formsave/lib/lodashCustom.min.js",
+    "prepare": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuse.js -r escape-html-template-tag > formsave/lib/deps.js",
     "debug": "npm run prepare && web-ext run -s formsave -a .",
     "build": "npm run prepare && web-ext build -s formsave -a .",
     "preversion": "test -z \"$(git status --porcelain)\" && npm test",
@@ -45,6 +45,7 @@
     "release": "web-ext sign -s formsave -a ."
   },
   "devDependencies": {
+    "browserify": "^14.1.0",
     "lodash-cli": "^4.17.4",
     "standard": "^9.0.2",
     "wdio-dot-reporter": "0.0.8",
@@ -55,6 +56,7 @@
     "webdriverio": "^4.6.2"
   },
   "dependencies": {
+    "escape-html-template-tag": "^1.1.0",
     "fuse.js": "^2.6.2",
     "vague-time": "^2.4.0"
   }
