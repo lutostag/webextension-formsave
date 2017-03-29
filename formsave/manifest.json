@@ -22,7 +22,7 @@
         "<all_urls>"
       ],
       "js": [
-        "lib/lodashDebounce.min.js",
+        "lib/lodashCustom.min.js",
         "content.js"
       ]
     }
@@ -37,7 +37,7 @@
     "lint": "standard --global browser && web-ext lint -w -s formsave",
     "pretest": "npm run lint",
     "test": "wdio",
-    "prepare": "mkdir -p formsave/lib && cp node_modules/fuse.js/src/fuse.min.js formsave/lib && cp node_modules/vague-time/src/vagueTime.min.js formsave/lib && lodash include=debounce -s -p -o formsave/lib/lodashDebounce.min.js",
+    "prepare": "mkdir -p formsave/lib && cp node_modules/fuse.js/src/fuse.min.js formsave/lib && cp node_modules/vague-time/src/vagueTime.min.js formsave/lib && lodash include=debounce,reverse,sortBy,values -s -p -o formsave/lib/lodashCustom.min.js",
     "debug": "npm run prepare && web-ext run -s formsave -a .",
     "build": "npm run prepare && web-ext build -s formsave -a .",
     "preversion": "test -z \"$(git status --porcelain)\" && npm test",

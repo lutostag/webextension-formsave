@@ -1,4 +1,4 @@
-/* global vagueTime */
+/* global vagueTime, TableSorter, _ */
 
 let tableContainer = document.querySelector('#selection-table')
 let textarea = document.querySelector('textarea')
@@ -11,6 +11,7 @@ class Table {
   constructor () {
     this.selected = ''
     this.refresh()
+    this.tableSorter = new TableSorter(this.refresh.bind(this))
   }
   remove (calledEvent) {
     browser.storage.local.remove(this.selected)
@@ -26,9 +27,9 @@ class Table {
     }
     textarea.value = ''
   }
-  createRow (uniq, item) {
+  createRow (item) {
     let row = document.createElement('div')
-    row.id = uniq
+    row.id = item.uniq
     row.className = 'container'
     let template = `<div title="${item.url}" class="item clip">${item.url}</div>` +
       `<div class="item clip center">${item.id}</div>` +
@@ -48,9 +49,8 @@ class Table {
     let reading = browser.storage.local.get()
     reading.then((results) => {
       this.clear()
-      for (let result in results) {
-        let item = results[result]
-        this.createRow(result, item)
+      for (let item of this.tableSorter.sort(_.values(results))) {
+        this.createRow(item)
       }
     })
   }

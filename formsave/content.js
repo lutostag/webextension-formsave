@@ -14,6 +14,6 @@ function changeHandler (calledEvent) {
     time: new Date(),
     content: target.value
   }
-  let key = item.url + '##' + item.id
-  browser.storage.local.set({[key]: item})
+  item.uniq = item.url + '##' + item.id
+  browser.storage.local.set({[item.uniq]: item})
 }
