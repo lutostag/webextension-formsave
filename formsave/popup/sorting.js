@@ -1,5 +1,8 @@
 /* global _ */
 
+const FuzzySearch = require('fuzzy-search')
+
+
 class TableSorter { // eslint-disable-line
   constructor (callback) {
     this.callback = callback
@@ -10,6 +13,8 @@ class TableSorter { // eslint-disable-line
       this.columns[id].defaultClassName = this.columns[id].className
       this.columns[id].addEventListener('click', this.click.bind(this))
     }
+    this.search = document.querySelector('#search')
+    this.search.addEventListener('input', _.debounce(callback, 200))
   }
   clearCSS () {
     for (let element of _.values(this.columns)) {
@@ -32,7 +37,10 @@ class TableSorter { // eslint-disable-line
     this.columns[id].className += ' sorting'
     this.callback()
   }
-  sort (items) {
+  sort (items, filterKeys) {
+    if (this.search.value !== '') {
+      items = new FuzzySearch(items, filterKeys).search(this.search.value)
+    }
     if (this.sortBy.column === null) {
       return items
     }

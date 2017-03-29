@@ -19,7 +19,7 @@
 textarea {
     resize: none;
     height: 100px;
-    width: 100%;
+    width: calc(100% - 4px);
 }
 
 .container {
@@ -34,6 +34,10 @@ textarea {
 .bold {
     font-weight: bold;
     text-align: center;
+}
+
+#search {
+    width: calc(100% - 16px);
 }
 
 .content {

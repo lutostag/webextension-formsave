@@ -52,7 +52,7 @@ class Table {
     let reading = browser.storage.local.get()
     reading.then((results) => {
       this.clear()
-      for (let item of this.tableSorter.sort(_.values(results))) {
+      for (let item of this.tableSorter.sort(_.values(results), ['url', 'id', 'content'])) {
         this.createRow(item)
       }
     })
