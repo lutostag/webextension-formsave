@@ -47,7 +47,7 @@ textarea {
 
 .item {
     flex-basis: 33%;
-    box-shadow: 0 0 0 1px 0 black;
+    box-shadow: 0 0 0 1px black;
     height: 1.2em;
     cursor: default;
 }
@@ -59,7 +59,7 @@ textarea {
 
 .center {
     text-align: center;
-    padding: 0px 10px;
+    padding: 0 10px;
 }
 
 .right {

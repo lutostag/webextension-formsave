@@ -49,7 +49,7 @@
     "lodash-cli": "^4.17.4",
     "standard": "^9.0.2",
     "wdio-dot-reporter": "0.0.8",
-    "wdio-firefox-profile-service": "0.0.2",
+    "wdio-firefox-profile-service": "0.0.3",
     "wdio-mocha-framework": "^0.5.9",
     "wdio-selenium-standalone-service": "0.0.8",
     "web-ext": "^1.8.1",
