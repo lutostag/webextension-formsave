@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "FormSave",
   "version": "0.9.5",
-  "description": "Automatically saves the users forms, and allows the user to view saved forms by ckicking on a button.",
+  "description": "Automatically save textareas and view those previously saved.",
   "icons": {
     "48": "icons/icon.svg"
   },
