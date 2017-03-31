@@ -3,8 +3,10 @@
 const vagueTime = require('vague-time')
 const escapeHTML = require('escape-html-template-tag')
 
+const searched = ['url', 'id', 'content']
+
 let tableContainer = document.querySelector('#selection-table')
-let textarea = document.querySelector('textarea')
+let textarea = document.querySelector('#textarea')
 
 function shortTime (timestamp) {
   return timestamp.replace(/T/, ' ').slice(0, 16)
@@ -52,7 +54,7 @@ class Table {
     let reading = browser.storage.local.get()
     reading.then((results) => {
       this.clear()
-      for (let item of this.tableSorter.sort(_.values(results), ['url', 'id', 'content'])) {
+      for (let item of this.tableSorter.sort(_.values(results), searched)) {
         this.createRow(item)
       }
     })
@@ -65,7 +67,7 @@ function copyToClipboard () {
 }
 
 let table = new Table()
-document.querySelector('.refresh').addEventListener('click', table.refresh.bind(table))
-document.querySelector('.clear').addEventListener('click', table.remove.bind(table))
-document.querySelector('.clear-all').addEventListener('click', table.removeAll.bind(table))
-document.querySelector('.copy').addEventListener('click', copyToClipboard)
+document.querySelector('#refresh').addEventListener('click', table.refresh.bind(table))
+document.querySelector('#clear').addEventListener('click', table.remove.bind(table))
+document.querySelector('#clear-all').addEventListener('click', table.removeAll.bind(table))
+document.querySelector('#copy').addEventListener('click', copyToClipboard)

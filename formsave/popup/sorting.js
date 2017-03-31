@@ -7,8 +7,9 @@ class TableSorter { // eslint-disable-line
     this.callback = callback
     this.sortBy = {column: null, reverse: false}
     this.columns = {}
-    for (let id of ['url', 'id', 'date']) {
-      this.columns[id] = document.querySelector('#' + id)
+    for (let element of document.querySelectorAll('.column')) {
+      let id = element.id
+      this.columns[id] = element
       this.columns[id].defaultClassName = this.columns[id].className
       this.columns[id].addEventListener('click', this.click.bind(this))
     }
