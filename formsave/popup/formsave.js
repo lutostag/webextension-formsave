@@ -59,7 +59,7 @@ class Table {
     if (this.selected !== null) {
       // clear the selection from the old one if it exists
       let element = document.getElementById(this.selected)
-      if (element !== null){
+      if (element !== null) {
         element.className = defaultClassName
       }
     }
