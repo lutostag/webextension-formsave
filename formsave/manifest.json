@@ -34,12 +34,12 @@
   },
   "license": "GPL-3.0",
   "scripts": {
+    "postinstall": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag > formsave/lib/deps.js",
     "lint": "standard --global browser && web-ext lint -w -s formsave",
     "pretest": "npm run lint",
     "test": "wdio",
-    "prepare": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag > formsave/lib/deps.js",
-    "debug": "npm run prepare && web-ext run -s formsave -a .",
-    "build": "npm run prepare && web-ext build -s formsave -a .",
+    "debug": "web-ext run -s formsave -a . --pref=extensions.webextensions.uuids='{\\\"{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}\\\":\\\"88de8cc8-d1ce-484a-bd9f-dd0b100cf262\\\"}' -u moz-extension://88de8cc8-d1ce-484a-bd9f-dd0b100cf262/popup/formsave.html",
+    "build": "web-ext build -s formsave -a .",
     "preversion": "test -z \"$(git status --porcelain)\" && npm test",
     "version": "git add formsave/manifest.json",
     "release": "web-ext sign -s formsave -a ."
