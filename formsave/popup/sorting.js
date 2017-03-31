@@ -31,6 +31,7 @@ class TableSorter { // eslint-disable-line
         return
       }
       this.sortBy.reverse = !this.sortBy.reverse
+      this.columns[id].className += ' reverse'
     } else {
       this.sortBy = {column: id, reverse: false}
     }
