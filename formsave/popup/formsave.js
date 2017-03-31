@@ -4,6 +4,7 @@ const vagueTime = require('vague-time')
 const escapeHTML = require('escape-html-template-tag')
 
 const searched = ['url', 'id', 'content']
+const defaultClassName = 'container'
 
 let tableContainer = document.querySelector('#selection-table')
 let textarea = document.querySelector('#textarea')
@@ -14,9 +15,9 @@ function shortTime (timestamp) {
 
 class Table {
   constructor () {
-    this.selected = ''
-    this.refresh()
+    this.selected = null
     this.tableSorter = new TableSorter(this.refresh.bind(this))
+    this.refresh()
   }
   remove (calledEvent) {
     browser.storage.local.remove(this.selected)
@@ -35,20 +36,35 @@ class Table {
   createRow (item) {
     let row = document.createElement('div')
     row.id = _.escape(item.uniq)
-    row.className = 'container'
+    row.className = defaultClassName
+    if (row.id === this.selected) {
+      row.className += ' selected'
+      this.select(row.id)
+    }
     let template = escapeHTML`<div title="${item.url}" class="item clip">${item.url}</div>
       <div class="item clip center">${item.id}</div>
       <div title="${shortTime(item.time)}" class="item clip right">${vagueTime.get({to: new Date(item.time)})}</div>`
     row.insertAdjacentHTML('afterbegin', template)
     tableContainer.appendChild(row)
-    row.addEventListener('click', this.select.bind(this))
+    row.addEventListener('click', this.selectClick.bind(this))
   }
-  select (calledEvent) {
-    this.selected = calledEvent.target.parentElement.id
-    let reading = browser.storage.local.get(this.selected)
+  select (id) {
+    this.selected = id
+    let reading = browser.storage.local.get(id)
     reading.then((results) => {
-      textarea.value = results[this.selected].content
+      textarea.value = results[id].content
     })
+  }
+  selectClick (calledEvent) {
+    if (this.selected !== null) {
+      // clear the selection from the old one if it exists
+      let element = document.getElementById(this.selected)
+      if (element !== null){
+        element.className = defaultClassName
+      }
+    }
+    calledEvent.target.parentElement.className += ' selected'
+    this.select(calledEvent.target.parentElement.id)
   }
   refresh (calledEvent) {
     let reading = browser.storage.local.get()

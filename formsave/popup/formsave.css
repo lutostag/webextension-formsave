@@ -84,3 +84,7 @@ textarea {
 .sorting.reverse {
     background-image: url("../icons/chevron-down.svg");
 }
+
+.selected {
+    background-color: #cccccc;
+}
