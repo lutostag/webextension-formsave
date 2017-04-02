@@ -16,38 +16,35 @@ class TableSorter { // eslint-disable-line
     this.search = document.querySelector('#search')
     this.search.addEventListener('input', _.debounce(callback, 200))
   }
-  clearCSS () {
+  updateCSS () {
     for (let element of _.values(this.columns)) {
       element.className = element.defaultClassName
+      if (element.id === this.sortBy.column) {
+        element.className += ' sorting'
+        if (this.sortBy.reverse) {
+          element.className += ' reverse'
+        }
+      }
     }
   }
   click (calledEvent) {
-    this.clearCSS()
     let id = calledEvent.target.id
     if (id === this.sortBy.column) {
-      if (this.sortBy.reverse) {
-        this.sortBy = {column: null, reverse: false}
-        this.callback()
-        return
-      }
       this.sortBy.reverse = !this.sortBy.reverse
-      this.columns[id].className += ' reverse'
+      if (!this.sortBy.reverse) {
+        this.sortBy.column = null
+      }
     } else {
       this.sortBy = {column: id, reverse: false}
     }
-    this.columns[id].className += ' sorting'
+    this.updateCSS()
     this.callback()
   }
   sort (items, filterKeys) {
-    if (this.search.value !== '') {
-      items = new FuzzySearch(items, filterKeys).search(this.search.value)
-    }
-    if (this.sortBy.column === null) {
-      return items
-    }
-    items = _.sortBy(items, [this.sortBy.column])
-    if (this.sortBy.reverse) {
-      items = _.reverse(items)
+    items = new FuzzySearch(items, filterKeys).search(this.search.value)
+    if (this.sortBy.column !== null) {
+      items = _.sortBy(items, [this.sortBy.column])
+      if (this.sortBy.reverse) items = _.reverse(items)
     }
     return items
   }
