@@ -16,6 +16,9 @@
     "default_title": "FormSave",
     "default_popup": "popup/formsave.html"
   },
+  "options_ui": {
+    "page": "options/options.html"
+  },
   "content_scripts": [
     {
       "matches": [

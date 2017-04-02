@@ -1,0 +1,24 @@
+input[type="radio"] {
+  float: left;
+  margin: 10px;
+}
+
+input[type="number"] {
+  width: 100px;
+}
+
+p {
+  margin: 5px;
+  float: left;
+  font-size: 1.5em;
+}
+
+input[type="radio"]:not(:checked) ~ * {
+  pointer-events: none;
+  tab-index: -1;
+  color: #aaaaaa;
+}
+
+.clear {
+  clear: both;
+}
