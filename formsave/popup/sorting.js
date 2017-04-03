@@ -8,17 +8,18 @@ class Reaper {
     this.refreshTime()
   }
   refreshTime () {
-    browser.storage.local.get('cull').then((options) => {
-      if (typeof options.cull === 'undefined') {
+    browser.storage.local.get('options').then((storage) => {
+      let options = storage.options
+      if (typeof options === 'undefined') {
         this.offset = null
-      } else if (!options.cull.enable) {
+      } else if (!options.reap.enable) {
         this.offset = null
       } else {
-        this.offset = options.cull.offset
+        this.offset = options.reap.offset
       }
     })
   }
-  cull (items) {
+  reap (items) {
     this.refreshTime()
     if (this.offset === null) {
       return items
@@ -70,7 +71,7 @@ class TableSorter { // eslint-disable-line
     this.callback()
   }
   sort (items, filterKeys) {
-    items = this.reaper.cull(items)
+    items = this.reaper.reap(items)
     items = new FuzzySearch(items, filterKeys).search(this.search.value)
     if (this.sortBy.column !== null) {
       items = _.sortBy(items, [this.sortBy.column])
