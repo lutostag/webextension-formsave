@@ -71,7 +71,9 @@ class Table {
     reading.then((results) => {
       this.clear()
       for (let item of this.tableSorter.sort(_.values(results), searched)) {
-        this.createRow(item)
+        if (item.hasOwnProperty('uniq')) {
+          this.createRow(item)
+        }
       }
     })
   }
