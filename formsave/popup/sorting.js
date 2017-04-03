@@ -2,6 +2,34 @@
 
 const FuzzySearch = require('fuzzy-search')
 
+class Reaper {
+  constructor () {
+    this.offset = null
+    this.refreshTime()
+  }
+  refreshTime () {
+    browser.storage.local.get('cull').then((options) => {
+      if (typeof options.cull === 'undefined') {
+        this.offset = null
+      } else if (!options.cull.enable) {
+        this.offset = null
+      } else {
+        this.offset = options.cull.offset
+      }
+    })
+  }
+  cull (items) {
+    this.refreshTime()
+    if (this.offset === null) {
+      return items
+    }
+    let oldest = new Date().getTime() - this.offset
+    let [toDelete, toKeep] = _.partition(items, (value) => (new Date(value.time).getTime() < oldest))
+    browser.storage.local.remove(toDelete.map((item) => item.uniq))
+    return toKeep
+  }
+}
+
 class TableSorter { // eslint-disable-line
   constructor (callback) {
     this.callback = callback
@@ -15,6 +43,7 @@ class TableSorter { // eslint-disable-line
     }
     this.search = document.querySelector('#search')
     this.search.addEventListener('input', _.debounce(callback, 200))
+    this.reaper = new Reaper()
   }
   updateCSS () {
     for (let element of _.values(this.columns)) {
@@ -41,6 +70,7 @@ class TableSorter { // eslint-disable-line
     this.callback()
   }
   sort (items, filterKeys) {
+    items = this.reaper.cull(items)
     items = new FuzzySearch(items, filterKeys).search(this.search.value)
     if (this.sortBy.column !== null) {
       items = _.sortBy(items, [this.sortBy.column])

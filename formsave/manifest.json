@@ -37,7 +37,7 @@
   },
   "license": "GPL-3.0",
   "scripts": {
-    "postinstall": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag > formsave/lib/deps.js",
+    "postinstall": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape,partition -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag > formsave/lib/deps.js",
     "lint": "standard --global browser && web-ext lint -w -s formsave",
     "pretest": "npm run lint",
     "test": "wdio",

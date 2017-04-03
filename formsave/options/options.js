@@ -36,6 +36,6 @@ function restoreOptions () {
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions)
-for (let element of document.querySelectorAll('input', 'select')) {
+for (let element of document.querySelectorAll('input, select')) {
   element.addEventListener('change', saveOptions)
 }
