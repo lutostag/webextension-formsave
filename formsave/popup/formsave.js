@@ -24,7 +24,12 @@ class Table {
     this.refresh()
   }
   removeAll (calledEvent) {
-    browser.storage.local.clear()
+    let result = browser.storage.local.get('cull')
+    result.then((options) => {
+      browser.storage.local.clear().then(() => {
+        browser.storage.local.set(options)
+      })
+    })
     this.clear()
   }
   clear (calledEvent) {
