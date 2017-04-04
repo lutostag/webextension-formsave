@@ -11,7 +11,7 @@ describe('formsave', function () {
   it('can save forms', function () {
     browser.url('http://www.yamllint.com/')
     browser.setValue('#yaml', 'something to say')
-    browser.pause(300)
+    browser.pause(500)
     browser.url(prefix + 'popup/formsave.html')
     browser.click('.clip')
     assert(browser.getValue('textarea') === 'something to say')
