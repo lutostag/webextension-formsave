@@ -53,7 +53,6 @@ exports.config = {
     // 5 instances get started at a time.
     maxInstances: 1,
     //
-    platform: 'OS X 10.11',
     browserName: 'firefox',
     version: 'latest',
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER
