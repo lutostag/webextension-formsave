@@ -1,4 +1,9 @@
 exports.config = {
+  protocol: 'http',
+  port: 4445,
+  host: 'localhost',
+  user: process.env.SAUCE_USERNAME,
+  key: process.env.SAUCE_ACCESS_KEY,
   //
   // ==================
   // Specify Test Files
