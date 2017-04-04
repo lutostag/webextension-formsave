@@ -137,6 +137,7 @@ exports.config = {
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
+    timeout: 9999999,
     ui: 'bdd'
   }
   //
