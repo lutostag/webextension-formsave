@@ -10,22 +10,17 @@
         <div class="box">
             <input type="text" id="search" placeholder="&#128270;"></input>
             <div class="container">
-                <div id="url" class="item bold">url</div>
-                <div id="id" class="item bold">id</div>
-                <div id="date" class="item bold">date</div>
+                <div id="url" class="column item bold">url</div>
+                <div id="id" class="column item bold">id</div>
+                <div id="date" class="column item bold">date</div>
             </div>
-            <div class="content">
-                <div id="selection-table">
-                </div>
-            </div>
-            <div class="selected">
-                <textarea readonly></textarea>
-            </div>
-            <div class="buttons">
-                <button class="copy">Copy</button>
-                <button class="refresh">Refresh</button>
-                <button class="clear">Clear</button>
-                <button class="clear-all">Clear all</button>
+            <div class="content" id="selection-table"></div>
+            <textarea id="textarea" readonly></textarea>
+            <button id="copy">Copy</button>
+            <div class="float-right">
+                <button id="refresh">Refresh</button>
+                <button id="clear">Clear</button>
+                <button id="clear-all">Clear all</button>
             </div>
         </div>
         <script src="../lib/lodashCustom.min.js"></script>

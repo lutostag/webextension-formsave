@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="options.css"/>
+    </head>
+
+    <body>
+        <div>
+            <input type="radio" name="reap" value="false">
+            <p>Never automatically delete saved forms</p>
+        </div>
+        <div class="clear">
+        <input type="radio" name="reap" value="true">
+            <p>Automatically delete saved forms after</p>
+            <input name="count" type="number" min="1">
+            <select name="interval">
+                <option value="day">days</option>
+                <option value="hour">hours</option>
+                <option value="minute">minutes</option>
+            </select>
+        </div>
+        <script src="options.js"></script>
+    </body>
+</html>

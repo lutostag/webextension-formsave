@@ -52,6 +52,10 @@ textarea {
     cursor: default;
 }
 
+.item.column {
+    box-shadow: 0 0 0 1px black;
+}
+
 .clip {
     overflow: hidden;
     white-space: nowrap;
@@ -66,6 +70,21 @@ textarea {
     text-align: right;
 }
 
+.float-right {
+    float: right;
+}
+
 .sorting {
-    color: blue;
+    background-image: url("../icons/chevron.svg");
+    background-size: 0.75em 0.5em;
+    background-repeat: no-repeat;
+    background-position: center right 10px;
+}
+
+.sorting.reverse {
+    background-image: url("../icons/chevron-down.svg");
+}
+
+.selected {
+    background-color: #cccccc;
 }
