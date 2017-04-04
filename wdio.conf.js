@@ -56,7 +56,7 @@ exports.config = {
     browserName: 'firefox',
     version: 'latest',
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-    seleniumVersion: '3.3.1'
+    seleniumVersion: '3.0.1'
   }],
   //
   // ===================
