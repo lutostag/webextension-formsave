@@ -50,7 +50,7 @@ exports.config = {
     maxInstances: 1,
     //
     browserName: 'firefox',
-    tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
+    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER
   }],
   //
   // ===================
