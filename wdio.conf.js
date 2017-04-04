@@ -55,7 +55,7 @@ exports.config = {
     //
     platform: 'OS X 10.11',
     browserName: 'firefox',
-    version: 'latest',
+    version: 'latest-1',
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
     'selenium-version': '3.3.1'
   }],
@@ -137,7 +137,6 @@ exports.config = {
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
-    timeout: 9999999,
     ui: 'bdd'
   }
   //
