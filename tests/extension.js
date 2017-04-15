@@ -13,7 +13,7 @@ describe('formsave', function () {
     browser.setValue('#yaml', 'something to say')
     browser.pause(300)
     browser.url(prefix + 'popup/formsave.html')
-    browser.pause(1000)
+    browser.pause(300)
     browser.click('.clip')
     assert(browser.getValue('textarea') === 'something to say')
   })
