@@ -132,7 +132,7 @@ exports.config = {
     ui: 'bdd'
   },
   seleniumArgs: {
-    version: '3.3.0',
+    version: '3.3.1',
     drivers: {
       firefox: {
         version: '0.15.0'
@@ -140,7 +140,7 @@ exports.config = {
     }
   },
   seleniumInstallArgs: {
-    version: '3.3.0',
+    version: '3.3.1',
     drivers: {
       firefox: {
         version: '0.15.0'
