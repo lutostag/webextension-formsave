@@ -1,14 +1,9 @@
-sudo: false
-dist: precise
+dist: trusty
 language: node_js
 node_js:
-  - "4.4.3"
+  - "6"
 addons:
-  apt:
-    packages:
-      - oracle-java8-installer
-jdk:
-  - oraclejdk8
+  firefox: "52.0"
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
