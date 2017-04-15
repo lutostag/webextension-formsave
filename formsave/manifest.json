@@ -50,7 +50,7 @@
   "devDependencies": {
     "browserify": "^14.1.0",
     "lodash-cli": "^4.17.4",
-    "standard": "^9.0.2",
+    "standard": "^10.0.2",
     "wdio-dot-reporter": "0.0.8",
     "wdio-firefox-profile-service": "0.0.3",
     "wdio-mocha-framework": "^0.5.9",
