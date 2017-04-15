@@ -130,5 +130,11 @@ exports.config = {
   // See the full list at http://mochajs.org/
   mochaOpts: {
     ui: 'bdd'
+  },
+  seleniumArgs: {
+    version: '3.3.1'
+  },
+  seleniumInstallArgs: {
+    version: '3.3.1'
   }
 }
