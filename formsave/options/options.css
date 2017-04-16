@@ -13,7 +13,7 @@ p {
   font-size: 1.5em;
 }
 
-input[type="radio"]:not(:checked) ~ :-moz-any(p, select, input), {
+input[type="radio"]:not(:checked) ~ :-moz-any(p, select, input) {
   pointer-events: none;
   color: #aaaaaa;
 }
