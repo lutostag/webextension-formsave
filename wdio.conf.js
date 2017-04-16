@@ -50,8 +50,7 @@ exports.config = {
     // 5 instances get started at a time.
     maxInstances: 1,
     //
-    browserName: 'firefox',
-    firefox_binary: '/home/lutostag/Downloads/ffx/firefox/firefox'
+    browserName: 'firefox'
   }],
   //
   // ===================
