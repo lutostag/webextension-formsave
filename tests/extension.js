@@ -9,8 +9,8 @@ describe('formsave', function () {
     assert(browser.element('svg').value !== null)
   })
   it('can save forms', function () {
-    browser.url('http://www.yamllint.com/')
-    browser.setValue('#yaml', 'something to say')
+    browser.url('file://' + process.cwd() + '/tests/assets/textarea.html')
+    browser.setValue('#textarea', 'something to say')
     browser.pause(500)
     browser.url(prefix + 'popup/formsave.html')
     browser.pause(300)
