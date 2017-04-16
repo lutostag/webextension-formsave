@@ -63,7 +63,7 @@ exports.config = {
   sync: true,
   //
   // Level of logging verbosity: silent | verbose | command | data | result | error
-  logLevel: 'verbose',
+  logLevel: 'silent',
   //
   // Enables colors for log output.
   coloredLogs: true,
