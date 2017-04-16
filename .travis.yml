@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - "6"
 addons:
-  firefox: "52.0"
+  firefox: "latest-dev"
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
