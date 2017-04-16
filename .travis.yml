@@ -2,8 +2,10 @@ dist: trusty
 language: node_js
 node_js:
   - "6"
-addons:
-  firefox: "latest-dev"
+before_install:
+  - "wget -O /tmp/firefox-unbranded.tar.bz2 http://archive.mozilla.org/pub/firefox/tinderbox-builds/mozilla-release-linux64-add-on-devel/1488485271/firefox-52.0.en-US.linux-x86_64-add-on-devel.tar.bz2"
+  - "tar xf /tmp/firefox-unbranded.tar.bz2"
+  - "export PATH=$PWD/firefox:$PATH"
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"

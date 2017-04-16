@@ -41,7 +41,8 @@ exports.config = {
     extensions: [
       './formsave' // path to .xpi file
     ],
-    'extensions.webextensions.uuids': '{"{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}":"88de8cc8-d1ce-484a-bd9f-dd0b100cf262"}'
+    'extensions.webextensions.uuids': '{"{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}":"88de8cc8-d1ce-484a-bd9f-dd0b100cf262"}',
+    'xpinstall.signatures.required': false
   },
   capabilities: [{
     // maxInstances can get overwritten per capability. So if you have an in-house Selenium
@@ -49,7 +50,8 @@ exports.config = {
     // 5 instances get started at a time.
     maxInstances: 1,
     //
-    browserName: 'firefox'
+    browserName: 'firefox',
+    firefox_binary: '/home/lutostag/Downloads/ffx/firefox/firefox'
   }],
   //
   // ===================
