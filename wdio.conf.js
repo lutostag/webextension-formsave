@@ -131,6 +131,7 @@ exports.config = {
   mochaOpts: {
     ui: 'bdd'
   },
+  seleniumLogs: './',
   seleniumArgs: {
     version: '3.0.1',
     drivers: {
