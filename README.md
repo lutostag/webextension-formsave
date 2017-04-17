@@ -6,6 +6,10 @@
 ## Install
 * Firefox via [Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/formsave/)
 
+## Screenshots
+[![popup](https://cdn.rawgit.com/lutostag/webextension-formsave/master/doc/screenshots/popup.png)]()
+[![embed](https://cdn.rawgit.com/lutostag/webextension-formsave/master/doc/screenshots/embed.png)]()
+
 ## Contribute
 * Please submit issues where the text from a textarea is not captured appropriately. (Include the url of the page)
 
