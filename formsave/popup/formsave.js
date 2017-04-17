@@ -1,6 +1,5 @@
 /* global _, TableSorter */
 
-const vagueTime = require('vague-time')
 const escapeHTML = require('escape-html-template-tag')
 
 const searched = ['url', 'id', 'content']
