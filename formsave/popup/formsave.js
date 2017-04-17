@@ -10,7 +10,7 @@ let tableContainer = document.querySelector('#selection-table')
 let textarea = document.querySelector('#textarea')
 
 function shortTime (timestamp) {
-  return timestamp.replace(/T/, ' ').slice(0, 16)
+  return timestamp
 }
 
 class Table {
@@ -48,7 +48,7 @@ class Table {
     }
     let template = escapeHTML`<div title="${item.url}" class="item clip">${item.url}</div>
       <div class="item clip center">${item.id}</div>
-      <div title="${shortTime(item.time)}" class="item clip right">${vagueTime.get({to: new Date(item.time)})}</div>`
+      <div title="${shortTime(item.time)}" class="item clip right">${item.time}</div>`
     row.insertAdjacentHTML('afterbegin', template)
     tableContainer.appendChild(row)
     row.addEventListener('click', this.selectClick.bind(this))
