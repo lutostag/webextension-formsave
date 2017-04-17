@@ -4,14 +4,17 @@
   "version": "0.9.5",
   "description": "Automatically save textareas and view those previously saved.",
   "icons": {
-    "48": "icons/icon.svg"
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "permissions": [
     "storage"
   ],
   "browser_action": {
     "default_icon": {
-      "32": "icons/icon.svg"
+      "32": "icons/icon32.png"
     },
     "default_title": "FormSave",
     "default_popup": "popup/formsave.html"
@@ -53,6 +56,7 @@
     "browserify": "^14.1.0",
     "lodash-cli": "^4.17.4",
     "standard": "^10.0.2",
+    "svgexport": "^0.3.2",
     "wdio-dot-reporter": "0.0.8",
     "wdio-firefox-profile-service": "0.0.3",
     "wdio-mocha-framework": "^0.5.9",
