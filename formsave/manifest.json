@@ -43,6 +43,7 @@
     "pretest": "npm run lint && rm -f selenium-standalone.txt",
     "test": "wdio || (cat selenium-standalone.txt; exit 1)",
     "debug": "web-ext run -s formsave -a . --pref=extensions.webextensions.uuids='{\\\"{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}\\\":\\\"88de8cc8-d1ce-484a-bd9f-dd0b100cf262\\\"}' -u moz-extension://88de8cc8-d1ce-484a-bd9f-dd0b100cf262/popup/formsave.html",
+    "debug:chromium": "chromium-browser --temp-profile --load-extension=formsave about:blank",
     "build": "web-ext build -s formsave -a .",
     "preversion": "test -z \"$(git status --porcelain)\" && npm test",
     "version": "git add formsave/manifest.json",
