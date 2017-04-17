@@ -11,7 +11,7 @@ function changeHandler (calledEvent) {
   let item = {
     url: document.URL,
     id: target.id,
-    time: new Date(),
+    time: new Date().toISOString(),
     content: target.value
   }
   item.uniq = item.url + '##' + item.id
