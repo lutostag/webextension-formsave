@@ -51,7 +51,8 @@ exports.config = {
     {
       browserName: 'chrome',
       chromeOptions: {
-        args: ['--temp-profile', '--password-store=basic', '--load-extension=formsave', 'about:blank']
+        binary: '/tmp/chrome-linux/chrome',
+        args: ['--no-sandbox', '--temp-profile', '--password-store=basic', '--load-extension=formsave', 'about:blank']
       }
     }
   ],

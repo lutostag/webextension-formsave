@@ -1,11 +1,12 @@
 dist: trusty
+sudo: required
 language: node_js
 node_js:
   - "6"
 before_install:
   - wget -O /tmp/firefox-unbranded.tar.bz2 http://archive.mozilla.org/pub/firefox/tinderbox-builds/mozilla-release-linux64-add-on-devel/1488485271/firefox-52.0.en-US.linux-x86_64-add-on-devel.tar.bz2
   - tar xf /tmp/firefox-unbranded.tar.bz2 -C /tmp
-  - wget -qO /tmp/chrome.zip "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F$(wget -qO - "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2FLAST_CHANGE?alt=media")%2Fchrome-linux.zip?alt=media"
+  - wget -qO /tmp/chrome.zip https://download-chromium.appspot.com/dl/Linux_x64
   - unzip /tmp/chrome.zip -d /tmp
   - export PATH=/tmp/firefox:/tmp/chrome-linux:$PATH
   - chrome --version
