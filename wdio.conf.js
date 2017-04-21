@@ -46,13 +46,11 @@ exports.config = {
   },
   capabilities: [
     {
-      browserName: 'firefox',
-      firefox_binary: '/home/lutostag/Downloads/ffx/firefox/firefox'
+      browserName: 'firefox'
     },
     {
       browserName: 'chrome',
       chromeOptions: {
-        binary: '/usr/bin/chromium-browser',
         args: ['--temp-profile', '--password-store=basic', '--load-extension=formsave', 'about:blank']
       }
     }
