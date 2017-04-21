@@ -8,6 +8,7 @@ before_install:
   - wget -qO /tmp/chrome.zip "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F$(wget -qO - "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2FLAST_CHANGE?alt=media")%2Fchrome-linux.zip?alt=media"
   - unzip /tmp/chrome.zip -d /tmp
   - export PATH=/tmp/firefox:/tmp/chrome-linux:$PATH
+  - chrome --version
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
