@@ -31,7 +31,7 @@ exports.config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 1,
+  maxInstances: 2,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -44,14 +44,19 @@ exports.config = {
     'extensions.webextensions.uuids': '{"{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}":"88de8cc8-d1ce-484a-bd9f-dd0b100cf262"}',
     'xpinstall.signatures.required': false
   },
-  capabilities: [{
-    // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-    // grid with only 5 firefox instances available you can make sure that not more than
-    // 5 instances get started at a time.
-    maxInstances: 1,
-    //
-    browserName: 'firefox'
-  }],
+  capabilities: [
+    {
+      browserName: 'firefox',
+      firefox_binary: '/home/lutostag/Downloads/ffx/firefox/firefox'
+    },
+    {
+      browserName: 'chrome',
+      chromeOptions: {
+        binary: '/usr/bin/chromium-browser',
+        args: ['--temp-profile', '--password-store=basic', '--load-extension=formsave', 'about:blank']
+      }
+    }
+  ],
   //
   // ===================
   // Test Configurations
@@ -138,6 +143,9 @@ exports.config = {
     drivers: {
       firefox: {
         version: '0.15.0'
+      },
+      chrome: {
+        version: '2.28'
       }
     }
   },
@@ -146,6 +154,9 @@ exports.config = {
     drivers: {
       firefox: {
         version: '0.15.0'
+      },
+      chrome: {
+        version: '2.28'
       }
     }
   }
