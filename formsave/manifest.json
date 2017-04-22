@@ -54,10 +54,10 @@
     "build:chrome": "npm run decrypt && chrome --pack-extension=formsave --pack-extension-key=secrets/formsave.pem",
     "release:chrome": "npm run build:chrome && github-release upload -s $(cat secrets/github) -u lutostag -r webextension-formsave -f formsave.crx -n formsave.crx -t $(git describe)",
     "release:firefox": "web-ext sign -s formsave -a . --api-key $(cat secrets/amo_key) --api-secret $(cat secrets/amo_secret)",
-    "release": "npm run release:chrome && npm run release:firefox"
+    "release": "npm run release:chrome && npm run release:firefox",
     "preversion": "test -z \"$(git status --porcelain)\" && npm test",
     "version": "git add formsave/manifest.json",
-    "postversion": "npm run release",
+    "postversion": "npm run release"
   },
   "devDependencies": {
     "browserify": "^14.1.0",
