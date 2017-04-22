@@ -3,9 +3,11 @@ language: node_js
 node_js:
   - "6"
 before_install:
-  - "wget -O /tmp/firefox-unbranded.tar.bz2 http://archive.mozilla.org/pub/firefox/tinderbox-builds/mozilla-release-linux64-add-on-devel/1488485271/firefox-52.0.en-US.linux-x86_64-add-on-devel.tar.bz2"
-  - "tar xf /tmp/firefox-unbranded.tar.bz2 -C /tmp"
-  - "export PATH=/tmp/firefox:$PATH"
+  - wget -O /tmp/firefox-unbranded.tar.bz2 http://archive.mozilla.org/pub/firefox/tinderbox-builds/mozilla-release-linux64-add-on-devel/1488485271/firefox-52.0.en-US.linux-x86_64-add-on-devel.tar.bz2
+  - tar xf /tmp/firefox-unbranded.tar.bz2 -C /tmp
+  - wget -qO /tmp/chrome.zip https://download-chromium.appspot.com/dl/Linux_x64
+  - unzip /tmp/chrome.zip -d /tmp
+  - export PATH=/tmp/firefox:/tmp/chrome-linux:$PATH
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"

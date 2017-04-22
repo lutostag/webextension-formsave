@@ -46,10 +46,10 @@ class Table {
       row.className += ' selected'
       this.select(row.id)
     }
-    let template = escapeHTML`<div title="${item.url}" class="item clip">${item.url}</div>
+    row.insertAdjacentHTML('afterbegin', escapeHTML`
+      <div title="${item.url}" class="item clip">${item.url}</div>
       <div class="item clip center">${item.id}</div>
-      <div title="${shortTime(item.time)}" class="item clip right">${vagueTime.get({to: new Date(item.time)})}</div>`
-    row.insertAdjacentHTML('afterbegin', template)
+      <div title="${shortTime(item.time)}" class="item clip right">${vagueTime.get({to: new Date(item.time)})}</div>`)
     tableContainer.appendChild(row)
     row.addEventListener('click', this.selectClick.bind(this))
   }
