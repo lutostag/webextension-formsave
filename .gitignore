@@ -1,3 +1,5 @@
 node_modules
 formsave/lib
 selenium-standalone.txt
+secrets
+formsave.crx

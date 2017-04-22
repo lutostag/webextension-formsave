@@ -46,12 +46,18 @@
     "lint": "standard --global browser && web-ext lint -w -s formsave -i lib/**.js",
     "pretest": "npm run lint && rm -f selenium-standalone.txt",
     "test": "wdio || (cat selenium-standalone.txt; exit 1)",
-    "debug": "web-ext run -s formsave -a . --pref=extensions.webextensions.uuids='{\\\"{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}\\\":\\\"88de8cc8-d1ce-484a-bd9f-dd0b100cf262\\\"}' -u moz-extension://88de8cc8-d1ce-484a-bd9f-dd0b100cf262/popup/formsave.html",
-    "debug:chromium": "chromium-browser --temp-profile --password-store=basic --load-extension=formsave about:blank",
-    "build": "web-ext build -s formsave -a .",
+    "debug:firefox": "web-ext run -s formsave -a . --pref=extensions.webextensions.uuids='{\\\"{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}\\\":\\\"88de8cc8-d1ce-484a-bd9f-dd0b100cf262\\\"}' -u moz-extension://88de8cc8-d1ce-484a-bd9f-dd0b100cf262/popup/formsave.html",
+    "debug:chrome": "chrome --temp-profile --password-store=basic --load-extension=formsave about:blank",
+    "debug": "npm run debug:firefox",
+    "decrypt": "gpg --decrypt .secrets.tar.gpg | tar -x",
+    "build:firefox": "web-ext build -s formsave -a .",
+    "build:chrome": "npm run decrypt && chrome --pack-extension=formsave --pack-extension-key=secrets/formsave.pem",
+    "release:chrome": "npm run build:chrome && github-release upload -s $(cat secrets/github) -u lutostag -r webextension-formsave -f formsave.crx -n formsave.crx -t $(git describe)",
+    "release:firefox": "web-ext sign -s formsave -a . --api-key $(cat secrets/amo_key) --api-secret $(cat secrets/amo_secret)",
+    "release": "npm run release:chrome && npm run release:firefox"
     "preversion": "test -z \"$(git status --porcelain)\" && npm test",
     "version": "git add formsave/manifest.json",
-    "release": "web-ext sign -s formsave -a ."
+    "postversion": "npm run release",
   },
   "devDependencies": {
     "browserify": "^14.1.0",
