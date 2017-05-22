@@ -51,6 +51,7 @@ exports.config = {
     {
       browserName: 'chrome',
       chromeOptions: {
+        binary: '/tmp/chrome-linux/chrome',
         args: ['--no-sandbox', '--temp-profile', '--password-store=basic', '--load-extension=formsave', 'about:blank']
       }
     }
@@ -143,7 +144,7 @@ exports.config = {
         version: '0.16.1'
       },
       chrome: {
-        version: '2.28'
+        version: '2.29'
       }
     }
   },
@@ -154,7 +155,7 @@ exports.config = {
         version: '0.16.1'
       },
       chrome: {
-        version: '2.28'
+        version: '2.29'
       }
     }
   }
