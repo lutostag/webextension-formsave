@@ -5,6 +5,7 @@
 
 ## Install
 * Firefox via [Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/formsave/)
+* Chromium/Chrome via [latest Github Release](https://github.com/lutostag/webextension-formsave/releases/latest) automatic updating is enabled
 
 ## Screenshots
 [![popup](https://cdn.rawgit.com/lutostag/webextension-formsave/master/doc/screenshots/popup.png)]()
