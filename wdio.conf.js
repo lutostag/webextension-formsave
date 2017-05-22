@@ -51,7 +51,7 @@ exports.config = {
     {
       browserName: 'chrome',
       chromeOptions: {
-        binary: '/tmp/chrome-linux/chrome',
+        // travisBinary
         args: ['--no-sandbox', '--temp-profile', '--password-store=basic', '--load-extension=formsave', 'about:blank']
       }
     }
