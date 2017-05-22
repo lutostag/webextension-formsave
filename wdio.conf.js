@@ -51,7 +51,6 @@ exports.config = {
     {
       browserName: 'chrome',
       chromeOptions: {
-        binary: '/tmp/chrome-linux/chrome',
         args: ['--no-sandbox', '--temp-profile', '--password-store=basic', '--load-extension=formsave', 'about:blank']
       }
     }
@@ -138,10 +137,10 @@ exports.config = {
   },
   seleniumLogs: './',
   seleniumArgs: {
-    version: '3.3.1',
+    version: '3.4.0',
     drivers: {
       firefox: {
-        version: '0.15.0'
+        version: '0.16.1'
       },
       chrome: {
         version: '2.28'
@@ -149,10 +148,10 @@ exports.config = {
     }
   },
   seleniumInstallArgs: {
-    version: '3.3.1',
+    version: '3.4.0',
     drivers: {
       firefox: {
-        version: '0.15.0'
+        version: '0.16.1'
       },
       chrome: {
         version: '2.28'
