@@ -5,11 +5,16 @@
 
 ## Install
 * Firefox via [Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/formsave/)
-* Chromium/Chrome via [latest Github Release](https://github.com/lutostag/webextension-formsave/releases/latest) automatic updating is enabled
+* Chromium/Chrome:
+> 1. Download the attached `formsave.crx` file from the [latest Github Release](https://github.com/lutostag/webextension-formsave/releases/latest)
+> 2. Settings-Icon > Tools > Extensions  
+> ( the 'three horizontal-bars' icon in the top-right corner )
+> 3. Drag and drop the "crx" extension file onto the Extensions page from [step 1]  
+> ( .crx file should likely be in your Downloads directory )
+> 4. Automatic updating is enabled, nothing else to do!
 
 ## Screenshots
-[![popup](https://cdn.rawgit.com/lutostag/webextension-formsave/master/doc/screenshots/popup.png)]()
-[![embed](https://cdn.rawgit.com/lutostag/webextension-formsave/master/doc/screenshots/embed.png)]()
+[![popup](https://cdn.rawgit.com/lutostag/webextension-formsave/master/doc/screenshots/popup.png)](https://github.com/lutostag/webextension-formsave/tree/master/doc/screenshots)
 
 ## Contribute
 * Please submit issues where the text from a textarea is not captured appropriately. (Include the url of the page)
