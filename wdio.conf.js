@@ -1,3 +1,5 @@
+const child_process = require('child_process') // eslint-disable-line
+
 exports.config = {
   //
   // ==================
@@ -51,7 +53,7 @@ exports.config = {
     {
       browserName: 'chrome',
       chromeOptions: {
-        // travisBinary
+        binary: child_process.execSync('which chrome').toString('utf-8').trim(),
         args: ['--no-sandbox', '--temp-profile', '--password-store=basic', '--load-extension=formsave', 'about:blank']
       }
     }
