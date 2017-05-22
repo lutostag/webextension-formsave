@@ -7,7 +7,6 @@ before_install:
   - tar xf /tmp/firefox-unbranded.tar.bz2 -C /tmp
   - wget -qO /tmp/chrome.zip https://download-chromium.appspot.com/dl/Linux_x64
   - unzip /tmp/chrome.zip -d /tmp
-  - which chrome
   - export PATH=/tmp/firefox:/tmp/chrome-linux:$PATH
   - which chrome
 before_script:
