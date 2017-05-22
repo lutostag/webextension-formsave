@@ -56,9 +56,11 @@
     "release:firefox": "web-ext sign -s formsave -a . --api-key $(cat secrets/amo_key) --api-secret $(cat secrets/amo_secret)",
     "release": "npm run release:chrome && npm run release:firefox",
     "preversion": "test -z \"$(git status --porcelain)\" && npm test",
-    "version": "git add formsave/manifest.json",
-    "postversion": "npm run release"
+    "version": "git add formsave/manifest.json && sed -i \"/updatecheck/{s/version='.*'/version='$(jq -r .version < formsave/manifest.json)'/}\" updates/chrome.xml",
+    "postversion": "git push && git push --tags && npm run release",
+    "hashes": "rm -fr formsave/lib; npm run postinstall; sha256sum formsave/lib/*"
   },
+  "update_url": "https://raw.githubusercontent.com/lutostag/webextension-formsave/master/updates/chrome.xml",
   "devDependencies": {
     "browserify": "^14.1.0",
     "lodash-cli": "^4.17.4",
