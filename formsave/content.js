@@ -1,5 +1,17 @@
 /* global _ */
 
+// Firefox for android menu item
+if (typeof window.orientation !== 'undefined') {
+  window.NativeWindow.menu.add({
+    name: 'FormSave',
+    parent: window.NativeWindow.menu.toolsMenuID,
+    icon: browser.extension.getURL('icons/icon.svg'),
+    callback: function () {
+      window.open(browser.extension.getURL('popup/formsave.html'), 'FormSave')
+    }
+  })
+}
+
 let texts = document.querySelectorAll('textarea, div[contenteditable="true"]')
 for (let text of texts) {
   text.addEventListener('input', _.debounce(changeHandler, 200), false)
