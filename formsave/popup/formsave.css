@@ -1,11 +1,11 @@
-@media all and (max-width: 450px) {
+@media (max-width: 450px) {
     /* when in menu */
     .box {
         width: 412px;
     }
 }
 
-@media all and (max-width: 400px), (min-width: 600px) {
+@media (max-width: 400px), (min-width: 600px) {
     /* when in toolbar or fullscreen */
     .box {
         width: 600px;
@@ -16,17 +16,20 @@
     display: block;
 }
 
+#search, textarea, .container, .content, .item {
+    box-sizing: border-box;
+    width: 100%;
+}
+
 textarea {
     resize: none;
     height: 100px;
-    width: calc(100% - 4px);
 }
 
 .container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 100%;
     background-color: #eeeeee;
     border-bottom: 1px solid black;
 }
@@ -36,24 +39,20 @@ textarea {
     text-align: center;
 }
 
-#search {
-    width: calc(100% - 16px);
-}
-
 .content {
     max-height: 400px;
     overflow: auto;
 }
 
 .item {
-    flex-basis: 33%;
+    flex-basis: 33.3333%;
     box-shadow: 0 1px 0 -1px black;
     height: 1.2em;
     cursor: default;
 }
 
 .item.column {
-    box-shadow: 0 0 0 1px black;
+    border: 1px solid black;
 }
 
 .clip {
