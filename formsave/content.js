@@ -11,9 +11,9 @@ function toArray (nodeList) {
 function setupHandlers (calledEvent) {
   console.log('handlers setup')
   let texts = toArray(document.querySelectorAll(selector))
-  document.querySelectorAll('iframe').forEach(item =>
-      texts.concat(toArray(item.contentWindow.document.body.querySelectorAll(selector)))
-  )
+  document.querySelectorAll('iframe').forEach(item => {
+    texts = texts.concat(toArray(item.contentWindow.document.querySelectorAll(selector)))
+  })
   for (let text of texts) {
     text.addEventListener('input', _.debounce(changeHandler, 200), false)
     text.addEventListener('change', _.debounce(changeHandler, 200))
@@ -26,7 +26,7 @@ function changeHandler (calledEvent) {
     url: document.URL,
     id: target.id,
     time: new Date().toISOString(),
-    content: target.value
+    content: target.value || target.textContent
   }
   item.uniq = _.escape(item.url + '##' + item.id)
   browser.storage.local.set({[item.uniq]: item})
