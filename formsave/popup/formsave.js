@@ -40,7 +40,7 @@ class Table {
   }
   createRow (item) {
     let row = document.createElement('div')
-    row.id = _.escape(item.uniq)
+    row.id = item.uniq
     row.className = defaultClassName
     if (row.id === this.selected) {
       row.className += ' selected'
