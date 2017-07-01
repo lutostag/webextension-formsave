@@ -53,7 +53,7 @@ exports.config = {
     {
       browserName: 'chrome',
       chromeOptions: {
-        binary: child_process.execSync('which chrome').toString('utf-8').trim(),
+        binary: child_process.execSync('which chrome || which chromium-browser').toString('utf-8').trim(),
         args: ['--no-sandbox', '--temp-profile', '--password-store=basic', '--load-extension=formsave', 'about:blank']
       }
     }
