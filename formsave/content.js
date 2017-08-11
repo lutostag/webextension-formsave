@@ -1,7 +1,7 @@
 /* global _ */
 
 const selector = 'textarea, *[contenteditable="true"]'
-
+let listened = []
 setupHandlers()
 
 let observer = new MutationObserver(_.debounce(setupHandlers, 500))
@@ -19,8 +19,11 @@ function setupHandlers (calledEvent) {
     } catch (err) {}
   })
   for (let text of texts) {
-    text.addEventListener('input', _.debounce(changeHandler, 200), false)
-    text.addEventListener('change', _.debounce(changeHandler, 200))
+    if (!listened.includes(text)) {
+      listened.push(text)
+      text.addEventListener('input', _.debounce(changeHandler, 200), false)
+      text.addEventListener('change', _.debounce(changeHandler, 200))
+    }
   }
 }
 
