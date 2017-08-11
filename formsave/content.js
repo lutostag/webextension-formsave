@@ -4,15 +4,19 @@ const selector = 'textarea, *[contenteditable="true"]'
 
 setupHandlers()
 
+let observer = new MutationObserver(_.debounce(setupHandlers, 500))
+observer.observe(document.documentElement, { attributes: true, childList: true, characterData: true, subtree: true })
+
 function toArray (nodeList) {
   return Array.prototype.slice.call(nodeList)
 }
 
 function setupHandlers (calledEvent) {
-  console.log('handlers setup')
   let texts = toArray(document.querySelectorAll(selector))
   document.querySelectorAll('iframe').forEach(item => {
-    texts = texts.concat(toArray(item.contentWindow.document.querySelectorAll(selector)))
+    try {
+      texts = texts.concat(toArray(item.contentWindow.document.querySelectorAll(selector)))
+    } catch (err) {}
   })
   for (let text of texts) {
     text.addEventListener('input', _.debounce(changeHandler, 200), false)
