@@ -30,8 +30,6 @@ textarea {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: #eeeeee;
-    border-bottom: 1px solid black;
 }
 
 .bold {
@@ -44,6 +42,14 @@ textarea {
     overflow: auto;
 }
 
+.container:nth-child(even) {
+    background-color: #f3f6fa;
+}
+
+.container:nth-child(odd) {
+    background-color: #ffffff;
+}
+
 .item {
     flex-basis: 33.3333%;
     box-shadow: 0 1px 0 -1px black;
@@ -52,7 +58,13 @@ textarea {
 }
 
 .item.column {
-    border: 1px solid black;
+    border-bottom: 1px solid #c1c1c1;
+    color: #808080;
+    background-color: #ebebeb;
+}
+
+.column:nth-child(2) {
+    box-shadow: inset -1px 0 #c1c1c1, inset 1px 0 #c1c1c1;
 }
 
 .clip {
@@ -84,6 +96,11 @@ textarea {
     background-image: url("../icons/chevron-down.svg");
 }
 
-.selected {
-    background-color: #cccccc;
+#selection-table .container:hover {
+    background-color: #bfe4f7;
+}
+
+#selection-table .container.selected {
+    background-color: #0095dd;
+    color: #ffffff;
 }
