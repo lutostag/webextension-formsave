@@ -47,7 +47,7 @@ class Table {
       this.select(row.id)
     }
     row.insertAdjacentHTML('afterbegin', escapeHTML`
-      <div title="${item.url}" class="item clip">${item.url}</div>
+      <div title="${item.url}" class="item clip">${item.url.replace(/^https?:\/\//, '')}</div>
       <div class="item clip center">${item.id}</div>
       <div title="${shortTime(item.time)}" class="item clip right">${vagueTime.get({to: new Date(item.time)})}</div>`)
     tableContainer.appendChild(row)
