@@ -4,9 +4,6 @@ const selector = 'textarea, *[contenteditable="true"]'
 let listened = []
 setupHandlers()
 
-let observer = new MutationObserver(_.debounce(setupHandlers, 500))
-observer.observe(document.documentElement, { attributes: true, childList: true, characterData: true, subtree: true })
-
 function toArray (nodeList) {
   return Array.prototype.slice.call(nodeList)
 }
