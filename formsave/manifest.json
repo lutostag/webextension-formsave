@@ -16,6 +16,7 @@
     "default_icon": {
       "32": "icons/icon32.png"
     },
+    "browser_style": true,
     "default_title": "FormSave",
     "default_popup": "popup/formsave.html"
   },
