@@ -68,11 +68,11 @@
     "lodash-cli": "^4.17.4",
     "standard": "^10.0.2",
     "svgexport": "^0.3.2",
-    "wdio-dot-reporter": "0.0.8",
-    "wdio-firefox-profile-service": "0.0.3",
+    "wdio-dot-reporter": "^0.0.9",
+    "wdio-firefox-profile-service": "^0.1.0",
     "wdio-mocha-framework": "^0.5.9",
-    "wdio-selenium-standalone-service": "0.0.8",
-    "web-ext": "^1.8.1",
+    "wdio-selenium-standalone-service": "^0.0.9",
+    "web-ext": "^2.2.2",
     "webdriverio": "^4.6.2"
   },
   "dependencies": {
