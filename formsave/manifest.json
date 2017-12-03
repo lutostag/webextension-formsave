@@ -77,8 +77,8 @@
   },
   "dependencies": {
     "escape-html-template-tag": "^1.1.0",
-    "fuzzy-search": "^1.4.0",
+    "fuzzy-search": "^2.0.1",
     "vague-time": "^2.4.0",
-    "webextension-polyfill": "^0.1.1"
+    "webextension-polyfill": "^0.2.1"
   }
 }
