@@ -41,12 +41,12 @@ describe('formsave', function () {
       browser.click('.clip')
       browser.click('#url')
       let element = browser.element('#selection-table > div').value.ELEMENT
-      assert(browser.elementIdAttribute(element, 'class').value.includes('selected'))
+      assert(!browser.elementIdAttribute(element, 'class').value.includes('selected'))
     })
     it('can reverse sort', function () {
       browser.click('#url')
       let element = browser.element('#selection-table > div').value.ELEMENT
-      assert(!browser.elementIdAttribute(element, 'class').value.includes('selected'))
+      assert(browser.elementIdAttribute(element, 'class').value.includes('selected'))
     })
   })
 })
