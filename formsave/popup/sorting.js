@@ -1,4 +1,4 @@
-/* global _ */
+/* global _, Event */
 
 const FuzzySearch = require('fuzzy-search')
 
