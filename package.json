@@ -62,7 +62,7 @@
     "release": "npm run release:chrome && npm run release:firefox",
     "preversion": "test -z \"$(git status --porcelain)\" && npm test",
     "fixupdate": "sed -i \"/updatecheck/{s_codebase='.*' version='.*'_codebase='https://github.com/lutostag/webextension-formsave/releases/download/v$(jq -r .version < package.json)/formsave.crx' version='$(jq -r .version < package.json)'_}\" updates/chrome.xml",
-    "version": "git add formsave/manifest.json && npm run fixupdate && git add updates/chrome.xml",
+    "version": "git add package.json && npm run fixupdate && git add updates/chrome.xml",
     "postversion": "git push && git push --tags && npm run release",
     "hashes": "rm -fr formsave/lib; npm run postinstall; sha256sum formsave/lib/*"
   },
