@@ -1,1 +1,87 @@
-formsave/manifest.json
+{
+  "manifest_version": 2,
+  "name": "FormSave",
+  "version": "0.9.10",
+  "description": "Automatically save textareas and view those previously saved.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "32": "icons/icon32.png"
+    },
+    "browser_style": true,
+    "default_title": "FormSave",
+    "default_popup": "popup/formsave.html"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "lib/lodashCustom.min.js",
+        "lib/browser-polyfill.js",
+        "content.js"
+      ]
+    }
+  ],
+  "applications": {
+    "gecko": {
+      "id": "{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}"
+    }
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9DcSF7MhwAp1KSs3NHWYBENrncy2peLAmE+nRvvbdAh1G+N9obDZdJ7ZoJgrE6QgZPUHokhZhL7YMoUgvEQXx6hqJwLDJGyEjMFCiQHqob0CD6KpYEQomkIoB/FxD8ziMIhbQa4Jv7ak7y2NfVbT0sN822asMG6yh03IP5A7G6NPJMDQdn5CRFALdq6MR9eInsYph/XBiF87ZcdVd8PRgSugaUFSYzr22boTYMoZB8p0RpGZcxmv1eMl7CQe9wUf8bsYD+S32nV8CfasZE0xJcmE9bsA8wuMA4Oo1c5osT3/Hxtq/josStwSnzepOzXkgOAH77NkehS1zzW2VskwSwIDAQAB",
+  "license": "GPL-3.0",
+  "scripts": {
+    "postinstall": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape,partition -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag > formsave/lib/deps.js && cp node_modules/webextension-polyfill/dist/browser-polyfill.js formsave/lib/browser-polyfill.js",
+    "lint": "standard --global browser && web-ext lint -w -s formsave -i lib/**.js",
+    "pretest": "npm run lint && rm -f selenium-standalone.txt",
+    "test": "wdio || (cat selenium-standalone.txt; exit 1)",
+    "debug:firefox": "web-ext run -s formsave -a . --pref=extensions.webextensions.uuids='{\\\"{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}\\\":\\\"88de8cc8-d1ce-484a-bd9f-dd0b100cf262\\\"}' -u moz-extension://88de8cc8-d1ce-484a-bd9f-dd0b100cf262/popup/formsave.html",
+    "debug:chrome": "$(which chrome || which chromium-browser) --temp-profile --password-store=basic --load-extension=formsave about:blank",
+    "debug": "npm run debug:firefox",
+    "decrypt": "gpg --decrypt .secrets.tar.gpg | tar -x",
+    "manifest:firefox": "jq 'del(.devDependencies, .dependencies, .scripts, .license, .key, .update_url)' < package.json > formsave/manifest.json",
+    "manifest:chrome": "jq 'del(.devDependencies, .dependencies, .scripts, .license, .applications, .options_ui.browser_style)' < package.json > formsave/manifest.json",
+    "build:firefox": "yarn run manifest:firefox; web-ext build -s formsave -a .",
+    "build:chrome": "yarn run manifest:chrome; npm run decrypt && $(which chrome || which chromium-browser) --pack-extension=formsave --pack-extension-key=secrets/formsave.pem",
+    "release:chrome": "npm run build:chrome && github-release release -s $(cat secrets/github) -u lutostag -r webextension-formsave -t $(git describe) && github-release upload -s $(cat secrets/github) -u lutostag -r webextension-formsave -f formsave.crx -n formsave.crx -t $(git describe)",
+    "release:firefox": "yarn run manifest:firefox; web-ext sign -s formsave -a . --api-key $(cat secrets/amo_key) --api-secret $(cat secrets/amo_secret)",
+    "release": "npm run release:chrome && npm run release:firefox",
+    "preversion": "test -z \"$(git status --porcelain)\" && npm test",
+    "fixupdate": "sed -i \"/updatecheck/{s_codebase='.*' version='.*'_codebase='https://github.com/lutostag/webextension-formsave/releases/download/v$(jq -r .version < package.json)/formsave.crx' version='$(jq -r .version < package.json)'_}\" updates/chrome.xml",
+    "version": "git add formsave/manifest.json && npm run fixupdate && git add updates/chrome.xml",
+    "postversion": "git push && git push --tags && npm run release",
+    "hashes": "rm -fr formsave/lib; npm run postinstall; sha256sum formsave/lib/*"
+  },
+  "update_url": "https://raw.githubusercontent.com/lutostag/webextension-formsave/master/updates/chrome.xml",
+  "devDependencies": {
+    "browserify": "^14.1.0",
+    "lodash-cli": "^4.17.4",
+    "standard": "^10.0.2",
+    "svgexport": "^0.3.2",
+    "wdio-dot-reporter": "^0.0.9",
+    "wdio-firefox-profile-service": "^0.1.0",
+    "wdio-mocha-framework": "^0.5.9",
+    "wdio-selenium-standalone-service": "^0.0.9",
+    "web-ext": "^2.2.2",
+    "webdriverio": "^4.6.2"
+  },
+  "dependencies": {
+    "escape-html-template-tag": "^1.1.0",
+    "fuzzy-search": "^2.0.1",
+    "vague-time": "^2.4.0",
+    "webextension-polyfill": "^0.2.1"
+  }
+}
