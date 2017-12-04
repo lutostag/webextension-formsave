@@ -2,6 +2,7 @@
 
 const selector = 'textarea, *[contenteditable="true"]'
 let listened = []
+let debounceTimeout = getDebounceTimeout()
 setupHandlers()
 
 function toArray (nodeList) {
@@ -18,8 +19,10 @@ function setupHandlers (calledEvent) {
   for (let text of texts) {
     if (!listened.includes(text)) {
       listened.push(text)
-      text.addEventListener('input', _.debounce(changeHandler, 200), false)
-      text.addEventListener('change', _.debounce(changeHandler, 200))
+      debounceTimeout.then((timeout) => {
+        text.addEventListener('input', _.debounce(changeHandler, timeout), false)
+        text.addEventListener('change', _.debounce(changeHandler, timeout))
+      })
     }
   }
 }
@@ -34,4 +37,15 @@ function changeHandler (calledEvent) {
   }
   item.uniq = _.escape(item.url + '##' + item.id)
   browser.storage.local.set({[item.uniq]: item})
+}
+
+function getDebounceTimeout () {
+  let result = browser.storage.local.get('options')
+  return result.then((storage) => {
+    let options = storage.options
+    if (typeof options === 'undefined' || typeof options.debounce === 'undefined') {
+      return 200
+    }
+    return options.debounce
+  })
 }

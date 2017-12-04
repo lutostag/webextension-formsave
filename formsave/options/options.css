@@ -7,10 +7,17 @@ input[type="number"] {
   width: 100px;
 }
 
+.floater {
+  float: left;
+}
+
 p {
   margin: 5px;
-  float: left;
   font-size: 1.5em;
+}
+
+.indent {
+  padding-left: 1.5em;
 }
 
 input[type="radio"]:not(:checked) ~ :-moz-any(p, select, input) {
@@ -20,4 +27,10 @@ input[type="radio"]:not(:checked) ~ :-moz-any(p, select, input) {
 
 .clear {
   clear: both;
+}
+
+.separator {
+  padding-top: 3em;
+  margin-top: 1px;
+  border-top: 1px solid black;
 }

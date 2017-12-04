@@ -9,17 +9,25 @@
     <body>
         <div>
             <input type="radio" name="reap" value="false">
-            <p>Never automatically delete saved forms</p>
+            <p class="floater">Never automatically delete saved forms</p>
         </div>
         <div class="clear">
             <input type="radio" name="reap" value="true">
-            <p>Automatically delete saved forms after</p>
+            <p class="floater">Automatically delete saved forms after</p>
             <input name="count" type="number" min="1">
             <select name="interval">
                 <option value="day">days</option>
                 <option value="hour">hours</option>
                 <option value="minute">minutes</option>
             </select>
+        </div>
+        <div class="clear separator">
+            <p class="floater">After textarea changes, wait to save for <br>
+            <small class="indent">
+                Note that this is a <a href="https://css-tricks.com/debouncing-throttling-explained-examples/#article-header-id-0">debounce timeout</a>
+            </small>
+            </p>
+            <input class="floater" name="debounce" type="number" min="0"> <p class="floater">msecs</p>
         </div>
         <script src="../lib/browser-polyfill.js"></script>
         <script src="options.js"></script>
