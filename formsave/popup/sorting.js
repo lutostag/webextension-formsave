@@ -34,7 +34,7 @@ class Reaper {
 class TableSorter { // eslint-disable-line
   constructor (callback) {
     this.callback = callback
-    this.sortBy = {column: 'date', reverse: true}
+    this.sortBy = {column: null, reverse: false}
     this.columns = {}
     for (let element of document.querySelectorAll('.column')) {
       let id = element.id
@@ -42,6 +42,9 @@ class TableSorter { // eslint-disable-line
       this.columns[id].defaultClassName = this.columns[id].className
       this.columns[id].inverse = this.columns[id].className.includes('inverse')
       this.columns[id].addEventListener('click', this.click.bind(this))
+      if (this.columns[id].className.includes('default')) {
+        this.columns[id].dispatchEvent(new Event('click'))
+      }
     }
     this.search = document.querySelector('#search')
     this.search.addEventListener('input', _.debounce(callback, 200))
