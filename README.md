@@ -20,3 +20,15 @@
 * Please submit issues where the text from a textarea is not captured appropriately. (Include the url of the page)
 
 Licensed under GPLv3, original upstream repo @ https://github.com/lutostag/webextension-formsave/
+
+## Develop dependencies
+* yarn
+* jq
+* git
+* browser (firefox/chromium/chrome)
+
+To test run `yarn test`
+
+Also to release the software automatically, I use:
+* gpg
+* github-release
