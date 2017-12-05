@@ -52,13 +52,18 @@ class TableSorter { // eslint-disable-line
     this.updateCSS()
   }
   updateCSS () {
+    function sortingClassNames () {
+      let classNames = ' sorting'
+      if (this.sortBy.reverse) {
+        classNames += ' reverse'
+      }
+      return classNames
+    }
+
     for (let element of _.values(this.columns)) {
       element.className = element.defaultClassName
       if (element.id === this.sortBy.column) {
-        element.className += ' sorting'
-        if (this.sortBy.reverse) {
-          element.className += ' reverse'
-        }
+        element.className += sortingClassNames.call(this)
       }
     }
   }
