@@ -31,7 +31,7 @@
       ],
       "js": [
         "lib/lodashCustom.min.js",
-        "lib/browser-polyfill.js",
+        "lib/browser-polyfill.min.js",
         "content.js"
       ]
     }
@@ -44,7 +44,7 @@
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9DcSF7MhwAp1KSs3NHWYBENrncy2peLAmE+nRvvbdAh1G+N9obDZdJ7ZoJgrE6QgZPUHokhZhL7YMoUgvEQXx6hqJwLDJGyEjMFCiQHqob0CD6KpYEQomkIoB/FxD8ziMIhbQa4Jv7ak7y2NfVbT0sN822asMG6yh03IP5A7G6NPJMDQdn5CRFALdq6MR9eInsYph/XBiF87ZcdVd8PRgSugaUFSYzr22boTYMoZB8p0RpGZcxmv1eMl7CQe9wUf8bsYD+S32nV8CfasZE0xJcmE9bsA8wuMA4Oo1c5osT3/Hxtq/josStwSnzepOzXkgOAH77NkehS1zzW2VskwSwIDAQAB",
   "license": "GPL-3.0",
   "scripts": {
-    "postinstall": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape,partition -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag > formsave/lib/deps.js && cp node_modules/webextension-polyfill/dist/browser-polyfill.js formsave/lib/browser-polyfill.js; npm run manifest:test",
+    "postinstall": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape,partition -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag > formsave/lib/deps.js && cp node_modules/webextension-polyfill/dist/browser-polyfill.min.js formsave/lib/browser-polyfill.min.js; npm run manifest:test",
     "lint": "npm run manifest:test; standard --global browser && web-ext lint -w -s formsave -i lib/**.js",
     "pretest": "npm run lint && rm -f selenium-standalone.txt",
     "test": "wdio || (cat selenium-standalone.txt; exit 1)",
