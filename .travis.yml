@@ -4,10 +4,7 @@ node_js:
   - "6"
 addons:
   firefox: latest-unsigned
-before_install:
-  - wget -qO /tmp/chrome.zip https://download-chromium.appspot.com/dl/Linux_x64
-  - unzip /tmp/chrome.zip -d /tmp
-  - export PATH=/tmp/chrome-linux:$PATH
+  chrome: beta
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
