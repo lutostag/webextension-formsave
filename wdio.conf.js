@@ -146,7 +146,7 @@ exports.config = {
         version: '0.16.1'
       },
       chrome: {
-        version: '2.29'
+        version: '2.35'
       }
     }
   },
@@ -157,7 +157,7 @@ exports.config = {
         version: '0.16.1'
       },
       chrome: {
-        version: '2.29'
+        version: '2.35'
       }
     }
   }
