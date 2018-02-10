@@ -45,7 +45,7 @@
   "license": "GPL-3.0",
   "scripts": {
     "postinstall": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape,partition -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag > formsave/lib/deps.js && cp node_modules/webextension-polyfill/dist/browser-polyfill.min.js formsave/lib/browser-polyfill.min.js; npm run manifest:test",
-    "lint": "npm run manifest:test; standard && web-ext lint -w -s formsave -i lib/**.js",
+    "lint": "npm run manifest:test; standard && web-ext lint -s formsave",
     "pretest": "npm run lint && rm -f selenium-standalone.txt",
     "test": "wdio || (cat selenium-standalone.txt; exit 1)",
     "debug:firefox": "npm run manifest:test; web-ext run -s formsave -a . --pref=extensions.webextensions.uuids='{\\\"{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}\\\":\\\"88de8cc8-d1ce-484a-bd9f-dd0b100cf262\\\"}' -u moz-extension://88de8cc8-d1ce-484a-bd9f-dd0b100cf262/popup/formsave.html",
@@ -68,7 +68,7 @@
   },
   "update_url": "https://raw.githubusercontent.com/lutostag/webextension-formsave/master/updates/chrome.xml",
   "devDependencies": {
-    "browserify": "^14.1.0",
+    "browserify": "^16.0.0",
     "lodash-cli": "^4.17.4",
     "standard": "^10.0.2",
     "svgexport": "^0.3.2",
