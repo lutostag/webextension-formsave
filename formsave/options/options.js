@@ -45,7 +45,28 @@ function restoreOptions () {
   })
 }
 
+function removeAll (calledEvent) {
+  if (!window.confirm('Delete all saved form data?')) return
+  let result = browser.storage.local.get('options')
+  result.then((config) => {
+    browser.storage.local.clear().then(() => {
+      browser.storage.local.set(config)
+    })
+  })
+}
+
+function exportData (calledEvent) {
+  let result = browser.storage.local.get()
+  result.then((all) => {
+    delete all['options']
+    console.log(all)
+    window.open('data:application/json;base64,' + window.btoa(JSON.stringify(all)))
+  })
+}
+
 document.addEventListener('DOMContentLoaded', restoreOptions)
 for (let element of document.querySelectorAll('input, select')) {
   element.addEventListener('change', saveOptions)
 }
+document.querySelector('#remove-all').addEventListener('click', removeAll)
+document.querySelector('#export').addEventListener('click', exportData)

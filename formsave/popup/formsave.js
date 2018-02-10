@@ -23,17 +23,13 @@ class Table {
     browser.storage.local.remove(this.selected)
     this.refresh()
   }
-  removeAll (calledEvent) {
-    if (!window.confirm('Do you want to delete ALL saved form data?')) return
-    let result = browser.storage.local.get('options')
-    result.then((storage) => {
-      browser.storage.local.clear().then(() => {
-        browser.storage.local.set(storage)
-      })
-    })
-    this.clear()
+  open (calledEvent) {
+    if (this.current_url) {
+      window.open(this.current_url)
+    }
   }
-  clear (calledEvent) {
+  clear () {
+    this.current_url = null
     while (tableContainer.firstChild) {
       tableContainer.removeChild(tableContainer.firstChild)
     }
@@ -59,6 +55,7 @@ class Table {
     let reading = browser.storage.local.get(id)
     reading.then((results) => {
       textarea.value = results[id].content
+      this.current_url = results[id].url
     })
   }
   selectClick (calledEvent) {
@@ -72,10 +69,11 @@ class Table {
     calledEvent.target.parentElement.className += ' selected'
     this.select(calledEvent.target.parentElement.id)
   }
-  refresh (calledEvent) {
+  refresh () {
     let reading = browser.storage.local.get()
     reading.then((results) => {
       this.clear()
+      delete results['options']
       for (let item of this.tableSorter.sort(_.values(results), searched)) {
         if (item.hasOwnProperty('uniq')) {
           this.createRow(item)
@@ -91,7 +89,6 @@ function copyToClipboard () {
 }
 
 let table = new Table()
-document.querySelector('#refresh').addEventListener('click', table.refresh.bind(table))
-document.querySelector('#clear').addEventListener('click', table.remove.bind(table))
-document.querySelector('#clear-all').addEventListener('click', table.removeAll.bind(table))
 document.querySelector('#copy').addEventListener('click', copyToClipboard)
+document.querySelector('#goto').addEventListener('click', table.open.bind(table))
+document.querySelector('#remove').addEventListener('click', table.remove.bind(table))
