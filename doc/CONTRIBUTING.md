@@ -10,3 +10,5 @@ And deps to release the software automatically:
 * gpg
 * [github-release](https://github.com/aktau/github-release)
 * [web-ext](https://github.com/mozilla/web-ext)
+
+To release run `yarn version`
