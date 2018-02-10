@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "FormSave",
-  "version": "0.9.11",
+  "version": "0.9.12",
   "description": "Automatically save textareas and view those previously saved.",
   "icons": {
     "16": "icons/icon16.png",
@@ -60,7 +60,7 @@
     "release:chrome": "npm run build:chrome && github-release release -s $(cat secrets/github) -u lutostag -r webextension-formsave -t $(git describe) && github-release upload -s $(cat secrets/github) -u lutostag -r webextension-formsave -f formsave.crx -n formsave.crx -t $(git describe)",
     "release:firefox": "npm run manifest:firefox; web-ext sign -s formsave -a . --api-key $(cat secrets/amo_key) --api-secret $(cat secrets/amo_secret)",
     "release": "npm run release:chrome && npm run release:firefox",
-    "preversion": "test -z \"$(git status --porcelain)\" && npm test",
+    "preversion": "npm run lint",
     "fixupdate": "sed -i \"/updatecheck/{s_codebase='.*' version='.*'_codebase='https://github.com/lutostag/webextension-formsave/releases/download/v$(jq -r .version < package.json)/formsave.crx' version='$(jq -r .version < package.json)'_}\" updates/chrome.xml",
     "version": "git add package.json && npm run fixupdate && git add updates/chrome.xml",
     "postversion": "git push && git push --tags && npm run release",
