@@ -96,6 +96,11 @@ textarea {
     background-image: url("../icons/chevron-down.svg");
 }
 
+button img {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
 #selection-table .container:hover {
     background-color: #bfe4f7;
 }

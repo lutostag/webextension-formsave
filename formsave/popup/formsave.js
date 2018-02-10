@@ -24,6 +24,7 @@ class Table {
     this.refresh()
   }
   removeAll (calledEvent) {
+    if (!window.confirm('Do you want to delete ALL saved form data?')) return
     let result = browser.storage.local.get('options')
     result.then((storage) => {
       browser.storage.local.clear().then(() => {
