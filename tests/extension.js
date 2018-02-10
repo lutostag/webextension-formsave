@@ -51,7 +51,7 @@ describe('formsave', function () {
   })
   describe('options', function () {
     it('clears-all', function () {
-      browser.url(extensionPrefix() + 'formsave/options.html')
+      browser.url(extensionPrefix() + 'options/options.html')
       browser.click('#remove-all')
       browser.alertAccept()
       browser.url(extensionPrefix() + 'popup/formsave.html')
