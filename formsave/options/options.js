@@ -59,8 +59,9 @@ function exportData (calledEvent) {
   let result = browser.storage.local.get()
   result.then((all) => {
     delete all['options']
-    console.log(all)
-    window.open('data:application/json;base64,' + window.btoa(JSON.stringify(all)))
+    let file = new window.File([JSON.stringify(all)], 'formsave.json', {type: 'application/json'})
+    let url = window.URL.createObjectURL(file)
+    window.open(url)
   })
 }
 
