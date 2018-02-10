@@ -45,15 +45,15 @@
   "license": "GPL-3.0",
   "scripts": {
     "postinstall": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape,partition -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag > formsave/lib/deps.js && cp node_modules/webextension-polyfill/dist/browser-polyfill.min.js formsave/lib/browser-polyfill.min.js; npm run manifest:test",
-    "lint": "npm run manifest:test; standard --global browser && web-ext lint -w -s formsave -i lib/**.js",
+    "lint": "npm run manifest:test; standard && web-ext lint -w -s formsave -i lib/**.js",
     "pretest": "npm run lint && rm -f selenium-standalone.txt",
     "test": "wdio || (cat selenium-standalone.txt; exit 1)",
     "debug:firefox": "npm run manifest:test; web-ext run -s formsave -a . --pref=extensions.webextensions.uuids='{\\\"{88de8cc8-d1ce-484a-bd9f-dd0b100cf262}\\\":\\\"88de8cc8-d1ce-484a-bd9f-dd0b100cf262\\\"}' -u moz-extension://88de8cc8-d1ce-484a-bd9f-dd0b100cf262/popup/formsave.html",
     "debug:chrome": "npm run manifest:test; $(which chrome || which chromium-browser) --temp-profile --password-store=basic --load-extension=formsave about:blank",
     "debug": "npm run debug:firefox",
     "decrypt": "gpg --decrypt .secrets.tar.gpg | tar -x",
-    "manifest:firefox": "jq 'del(.devDependencies, .dependencies, .scripts, .license, .key, .update_url)' < package.json > formsave/manifest.json",
-    "manifest:chrome": "jq 'del(.devDependencies, .dependencies, .scripts, .license, .applications, .options_ui.browser_style)' < package.json > formsave/manifest.json",
+    "manifest:firefox": "jq 'del(.devDependencies, .dependencies, .scripts, .license, .key, .update_url .standard)' < package.json > formsave/manifest.json",
+    "manifest:chrome": "jq 'del(.devDependencies, .dependencies, .scripts, .license, .applications, .options_ui.browser_style .standard)' < package.json > formsave/manifest.json",
     "manifest:test": "jq 'del(.update_url)' < package.json > formsave/manifest.json",
     "build:firefox": "npm run manifest:firefox; web-ext build -s formsave -a .",
     "build:chrome": "npm run manifest:chrome; npm run decrypt && $(which chrome || which chromium-browser) --pack-extension=formsave --pack-extension-key=secrets/formsave.pem",
@@ -84,5 +84,8 @@
     "fuzzy-search": "^2.0.1",
     "vague-time": "^2.4.0",
     "webextension-polyfill": "^0.2.1"
+  },
+  "standard": {
+    "globals": ["browser"]
   }
 }
