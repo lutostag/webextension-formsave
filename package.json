@@ -73,7 +73,7 @@
     "standard": "^10.0.2",
     "svgexport": "^0.3.2",
     "wdio-dot-reporter": "^0.0.9",
-    "wdio-firefox-profile-service": "^0.1.0",
+    "wdio-firefox-profile-service": "^0.1.1",
     "wdio-mocha-framework": "^0.5.9",
     "wdio-selenium-standalone-service": "^0.0.9",
     "web-ext": "^2.2.2",

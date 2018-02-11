@@ -1044,7 +1044,7 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.11.0:
+commander@2.11.0, commander@^2.3.0, commander@^2.6.0, commander@^2.9.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
@@ -1053,10 +1053,6 @@ commander@2.9.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.9.0.tgz#9c99094176e12240cb22d6c5146098400fe0f7d4"
   dependencies:
     graceful-readlink ">= 1.0.0"
-
-commander@^2.3.0, commander@^2.6.0, commander@^2.9.0:
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.14.1.tgz#2235123e37af8ca3c65df45b026dbd357b01b9aa"
 
 common-tags@1.7.2:
   version "1.7.2"
@@ -5402,7 +5398,7 @@ wdio-dot-reporter@^0.0.9, wdio-dot-reporter@~0.0.8:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/wdio-dot-reporter/-/wdio-dot-reporter-0.0.9.tgz#929b2adafd49d6b0534fda068e87319b47e38fe5"
 
-wdio-firefox-profile-service@^0.1.0:
+wdio-firefox-profile-service@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/wdio-firefox-profile-service/-/wdio-firefox-profile-service-0.1.1.tgz#29148e9fe19985be89706b763028ca9b54fa47d4"
   dependencies:

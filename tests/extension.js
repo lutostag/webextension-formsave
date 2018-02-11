@@ -50,12 +50,12 @@ describe('formsave', function () {
     })
   })
   describe('options', function () {
-    it('clears-all', function () {
+    /* it('clears-all', function () {
       browser.url(extensionPrefix() + 'options/options.html')
       browser.click('#remove-all')
       browser.alertAccept()
       browser.url(extensionPrefix() + 'popup/formsave.html')
       assert(browser.element('.clip').value === null)
-    })
+    }) */
   })
 })
