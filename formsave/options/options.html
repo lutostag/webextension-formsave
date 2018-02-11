@@ -9,31 +9,44 @@
 
     <body>
         <div>
-            <input type="radio" name="reap" value="false">
-            <p class="floater">Never automatically delete saved forms</p>
+            <input type="radio" name="reap" value="false" id="never">
+            <label for="never">Never automatically delete saved forms</label>
         </div>
-        <div class="clear">
-            <input type="radio" name="reap" value="true">
-            <p class="floater">Automatically delete saved forms after</p>
-            <input name="count" type="number" min="1">
-            <select name="interval">
-                <option value="day">days</option>
-                <option value="hour">hours</option>
-                <option value="minute">minutes</option>
-            </select>
+        <div class="first-group">
+            <input type="radio" name="reap" value="true" id="auto">
+            <label for="auto">
+                Automatically delete saved forms after
+                <input id="count" name="count" type="number" min="1">
+                <select id="interval" name="interval">
+                    <option value="day">days</option>
+                    <option value="hour">hours</option>
+                    <option value="minute">minutes</option>
+                </select>
+            </label>
         </div>
-        <div class="clear separator">
-            <p class="floater">After textarea changes, wait to save for <br>
-            <small class="indent">
-                Note that this is a <a href="https://css-tricks.com/debouncing-throttling-explained-examples/#article-header-id-0">debounce timeout</a>
-            </small>
-            </p>
-            <input class="floater" name="debounce" type="number" min="0"> <p class="floater">msecs</p>
+        <div class="separator">
+            <label for="debounce">After textarea changes, wait to save for</label>
+            <input id="debounce" name="debounce" type="number" min="0">
+            <label for="debounce">msecs</label>
+            (This is a <a href="https://css-tricks.com/debouncing-throttling-explained-examples/#article-header-id-0">debounce timeout</a>)
         </div>
-        <div class="clear separator">
-            <button title="Export all Form Data" id="export">Export all Form Data</button>
-            <button title="Delete all Form Data" id="remove-all">Delete all Form Data</button>
+        <div class="separator">
+            <label for="excludes">Exclude URL Rules:</label>
+            <div class="float-right">
+                (<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns#Examples">format info</a>)
+            </div>
+            <br>
+            <textarea id="excludes"></textarea>
         </div>
+        <div class="separator">
+            <button id="save">Save</button>
+            <button id="reset">Reset to defaults</button>
+            <div class="float-right">
+                <button id="export">Export all Form Data</button>
+                <button id="remove-all">Delete all Form Data</button>
+            </div>
+        </div>
+        <script src="../lib/lodashCustom.min.js"></script>
         <script src="../lib/browser-polyfill.min.js"></script>
         <script src="options.js"></script>
     </body>

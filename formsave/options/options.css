@@ -1,5 +1,4 @@
 input[type="radio"] {
-  float: left;
   margin: 10px;
 }
 
@@ -7,30 +6,36 @@ input[type="number"] {
   width: 100px;
 }
 
-.floater {
-  float: left;
-}
-
-p {
+label {
   margin: 5px;
   font-size: 1.5em;
 }
 
-.indent {
-  padding-left: 1.5em;
+.float-right {
+    float: right;
 }
 
-input[type="radio"]:not(:checked) ~ :-moz-any(p, select, input) {
+input[type="radio"]:not(:checked) ~ label {
   pointer-events: none;
   color: #aaaaaa;
 }
 
-.clear {
-  clear: both;
+label input, label select {
+  pointer-events: inherit;
+  color: inherit;
+}
+
+.first-group {
+  padding-bottom: 1.5em;
 }
 
 .separator {
-  padding-top: 3em;
-  margin-top: 1px;
+  padding: 1.5em 0;
   border-top: 1px solid black;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+    width: 100%;
 }
