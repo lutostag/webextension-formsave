@@ -14,7 +14,7 @@ let debounce = document.querySelector('#debounce')
 let excludes = document.querySelector('#excludes')
 
 function toRegexes (text) {
-  return []
+  return text.split(/\r\n|\r|\n/g)
 }
 
 function load () {

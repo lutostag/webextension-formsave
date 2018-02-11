@@ -3,13 +3,23 @@
 const selector = 'textarea, *[contenteditable="true"]'
 let listened = []
 let options = config()
-setupHandlers()
+setup()
 
 function toArray (nodeList) {
   return Array.prototype.slice.call(nodeList)
 }
 
-async function setupHandlers (calledEvent) {
+async function setup () {
+  let regexes = (await options).excludes.regexes
+  for (let regex of regexes) {
+    try {
+      if ((new RegExp(regex)).match(document.URL)) return
+    } catch (err) {}
+  }
+  setupHandlers()
+}
+
+async function setupHandlers () {
   let debounceTimeout = (await options).debounce
   let texts = toArray(document.querySelectorAll(selector))
   document.querySelectorAll('iframe').forEach(item => {
