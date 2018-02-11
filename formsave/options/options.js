@@ -42,7 +42,7 @@ function save () {
       regexes: toRegexes(excludes.value)
     }
   }
-  if (!isNaN(options.reap.count)) {
+  if (options.reap.enable && !isNaN(options.reap.count)) {
     options.reap.offset = options.reap.count * lookup[options.reap.interval]
   }
   browser.storage.local.set({options: options})

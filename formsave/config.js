@@ -16,6 +16,8 @@ const defaults = {
 function config () { // eslint-disable-line
   let result = browser.storage.local.get('options')
   return result.then((storage) => {
-    return _.merge({}, defaults, storage.options)
+    let output = _.merge({}, defaults, storage.options)
+    if (!output.reap.enable) output.reap.count = null
+    return output
   })
 }

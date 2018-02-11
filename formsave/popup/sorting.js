@@ -1,26 +1,14 @@
-/* global _, Event */
+/* global _, Event, config */
 
 const FuzzySearch = require('fuzzy-search')
+let options = config()
 
 class Reaper {
   constructor () {
     this.offset = null
-    this.refreshTime()
-  }
-  refreshTime () {
-    browser.storage.local.get('options').then((storage) => {
-      let options = storage.options
-      if (typeof options === 'undefined') {
-        this.offset = null
-      } else if (!options.reap.enable) {
-        this.offset = null
-      } else {
-        this.offset = options.reap.offset
-      }
-    })
+    options.then((options) => { this.offset = options.reap.offset })
   }
   reap (items) {
-    this.refreshTime()
     if (this.offset === null) {
       return items
     }
