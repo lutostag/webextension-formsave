@@ -1,22 +1,9 @@
-/* global _ */
+/* global config, defaults */
 
 const lookup = {
   minute: 1000 * 60,
   hour: 1000 * 60 * 60,
   day: 1000 * 60 * 60 * 24
-}
-
-const defaults = {
-  reap: {
-    enable: false,
-    count: null,
-    interval: 'day'
-  },
-  debounce: 200,
-  excludes: {
-    text: '',
-    regexes: []
-  }
 }
 
 let reapFalse = document.querySelector('input[value="false"]')
@@ -31,9 +18,7 @@ function toRegexes (text) {
 }
 
 function load () {
-  let result = browser.storage.local.get('options')
-  result.then((storage) => {
-    let options = _.merge({}, defaults, storage.options)
+  config().then((options) => {
     reapTrue.checked = options.reap.enable
     reapFalse.checked = !options.reap.enable
     count.value = options.reap.count

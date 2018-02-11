@@ -32,6 +32,7 @@
       "js": [
         "lib/lodashCustom.min.js",
         "lib/browser-polyfill.min.js",
+        "config.js",
         "content.js"
       ]
     }
