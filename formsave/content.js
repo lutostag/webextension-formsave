@@ -13,7 +13,7 @@ async function setup () {
   let regexes = (await options).excludes.regexes
   for (let regex of regexes) {
     try {
-      if ((new RegExp(regex)).match(document.URL)) return
+      if ((new RegExp(regex)).test(document.URL)) return
     } catch (err) {}
   }
   setupHandlers()

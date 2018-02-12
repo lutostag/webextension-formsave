@@ -1,4 +1,6 @@
-/* global config, defaults */
+/* global _, config, defaults */
+
+const matchPattern = require('match-pattern')
 
 const lookup = {
   minute: 1000 * 60,
@@ -14,7 +16,7 @@ let debounce = document.querySelector('#debounce')
 let excludes = document.querySelector('#excludes')
 
 function toRegexes (text) {
-  return text.split(/\r\n|\r|\n/g)
+  return _.map(text.split(/\r\n|\r|\n/g), (item) => matchPattern.parse(item).source)
 }
 
 function load () {
