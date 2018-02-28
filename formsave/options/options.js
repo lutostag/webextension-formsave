@@ -46,7 +46,6 @@ function restoreOptions () {
 }
 
 function removeAll (calledEvent) {
-  if (!window.confirm('Delete all saved form data?')) return
   let result = browser.storage.local.get('options')
   result.then((config) => {
     browser.storage.local.clear().then(() => {
