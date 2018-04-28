@@ -1,4 +1,4 @@
-/* global _, config, defaults */
+/* global _, config, configDefaults */
 
 const matchPattern = require('match-pattern')
 
@@ -15,8 +15,25 @@ let interval = document.querySelector('#interval')
 let debounce = document.querySelector('#debounce')
 let excludes = document.querySelector('#excludes')
 
-function toRegexes (text) {
-  return _.map(text.split(/\r\n|\r|\n/g), (item) => matchPattern.parse(item).source)
+function regexify (text) {
+  let regexes = []
+  let lines = text.split(/\r\n|\r|\n/g)
+  let isBlank = (line) => _.trim(line) === '' || line.startsWith('#')
+  for (let line of lines) {
+    if (isBlank(line)) continue
+    let trimmed = _.trim(line)
+    let pattern = matchPattern.parse(trimmed)
+    if (pattern === null) {
+      text = text.replace(line, '# ' + line)
+    } else {
+      regexes.push(pattern.source)
+    }
+  }
+
+  return {
+    text: text,
+    regexes: regexes
+  }
 }
 
 function load () {
@@ -39,20 +56,19 @@ function save () {
       offset: null
     },
     debounce: debounce.value,
-    excludes: {
-      text: excludes.value,
-      regexes: toRegexes(excludes.value)
-    }
+    excludes: regexify(excludes.value)
   }
   if (options.reap.enable && !isNaN(options.reap.count)) {
     options.reap.offset = options.reap.count * lookup[options.reap.interval]
   }
-  browser.storage.local.set({options: options})
+  browser.storage.local.set({options: options}).then(() => {
+    excludes.value = options.excludes.text
+  })
 }
 
 function reset () {
   if (!window.confirm('Reset all settings to addon defaults?')) return
-  browser.storage.local.set({options: defaults}).then(() => load())
+  browser.storage.local.set({options: configDefaults}).then(() => load())
 }
 
 function removeAll () {
@@ -71,7 +87,7 @@ function exportData () {
     delete all['options']
     let file = new window.File([JSON.stringify(all)], 'formsave.json', {type: 'application/json'})
     let url = window.URL.createObjectURL(file)
-    window.open(url)
+    window.open(url, '_blank')
   })
 }
 
