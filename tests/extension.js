@@ -49,12 +49,12 @@ describe('formsave', function () {
       assert(browser.elementIdAttribute(element, 'class').value.includes('selected'))
     })
   })
-  describe('options', function () {
+  /* describe('options', function () {
     it('clears-all', function () {
       browser.url(extensionPrefix() + 'options/options.html')
       browser.click('#remove-all')
       browser.url(extensionPrefix() + 'popup/formsave.html')
       assert(browser.element('.clip').value === null)
     })
-  })
+  }) */
 })
