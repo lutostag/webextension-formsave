@@ -6,6 +6,10 @@ input[type="number"] {
   width: 100px;
 }
 
+a[href="#"] button {
+  display: none;
+}
+
 label {
   margin: 5px;
   font-size: 1.5em;

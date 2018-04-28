@@ -15,6 +15,8 @@ let interval = document.querySelector('#interval')
 let debounce = document.querySelector('#debounce')
 let excludes = document.querySelector('#excludes')
 
+let exportAll = document.querySelector('#export-all')
+
 function regexify (text) {
   let regexes = []
   let lines = text.split(/\r\n|\r|\n/g)
@@ -88,17 +90,19 @@ function removeAll () {
 }
 
 function exportData () {
+  if (exportAll.href.startsWith('blob')) return
   let result = browser.storage.local.get()
   result.then((all) => {
     delete all['options']
     let file = new window.File([JSON.stringify(all)], 'formsave.json', {type: 'application/json'})
     let url = window.URL.createObjectURL(file)
-    window.open(url, '_blank')
+    exportAll.href = url
   })
 }
+
+exportData()
 
 document.addEventListener('DOMContentLoaded', load)
 document.querySelector('#save').addEventListener('click', save)
 document.querySelector('#reset').addEventListener('click', reset)
 document.querySelector('#remove-all').addEventListener('click', removeAll)
-document.querySelector('#export').addEventListener('click', exportData)
