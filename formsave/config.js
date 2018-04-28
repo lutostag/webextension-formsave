@@ -3,12 +3,13 @@
 const configDefaults = {
   reap: {
     enable: false,
-    count: null,
-    interval: 'day'
+    count: 1,
+    interval: 'day',
+    offset: null
   },
   debounce: 200,
   excludes: {
-    text: '',
+    text: '# incorrect rules will automatically be commented out and ignored',
     regexes: []
   }
 }
@@ -18,7 +19,7 @@ function config () { // eslint-disable-line
   return result.then((storage) => {
     let configOptions = _.get(storage, 'options', {})
     let output = _.merge({}, configDefaults, configOptions)
-    if (!output.reap.enable) output.reap.count = null
+    if (!output.reap.enable) output.reap.offset = null
     return output
   })
 }

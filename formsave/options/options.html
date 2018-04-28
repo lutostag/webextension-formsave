@@ -16,19 +16,23 @@
             <input type="radio" name="reap" value="true" id="auto">
             <label for="auto">
                 Automatically delete saved forms after
-                <input id="count" name="count" type="number" min="1">
-                <select id="interval" name="interval">
-                    <option value="day">days</option>
-                    <option value="hour">hours</option>
-                    <option value="minute">minutes</option>
-                </select>
+                <span>
+                    <input id="count" name="count" type="number" min="1">
+                    <select id="interval" name="interval">
+                        <option value="day">days</option>
+                        <option value="hour">hours</option>
+                        <option value="minute">minutes</option>
+                    </select>
+                </span>
             </label>
         </div>
         <div class="separator">
-            <label for="debounce">After textarea changes, wait to save for</label>
+            <label for="debounce">Wait to save after textarea changes for</label>
             <input id="debounce" name="debounce" type="number" min="0">
             <label for="debounce">msecs</label>
-            (This is a <a href="https://css-tricks.com/debouncing-throttling-explained-examples/#article-header-id-0">debounce timeout</a>)
+            <div class="float-right">
+                (<a href="https://css-tricks.com/debouncing-throttling-explained-examples/#article-header-id-0">debounce timeout</a>)
+            </div>
         </div>
         <div class="separator">
             <label for="excludes">Exclude URL Rules:</label>

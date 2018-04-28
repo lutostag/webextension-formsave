@@ -12,15 +12,20 @@ label {
 }
 
 .float-right {
+    margin: 5px;
     float: right;
 }
 
 input[type="radio"]:not(:checked) ~ label {
-  pointer-events: none;
   color: #aaaaaa;
 }
 
-label input, label select {
+input[type="radio"]:not(:checked) ~ label span {
+  pointer-events: none;
+  color: inherit;
+}
+
+label span input, label span select {
   pointer-events: inherit;
   color: inherit;
 }
