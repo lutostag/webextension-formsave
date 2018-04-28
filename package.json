@@ -32,6 +32,7 @@
       "js": [
         "lib/lodashCustom.min.js",
         "lib/browser-polyfill.min.js",
+        "config.js",
         "content.js"
       ]
     }
@@ -44,7 +45,7 @@
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9DcSF7MhwAp1KSs3NHWYBENrncy2peLAmE+nRvvbdAh1G+N9obDZdJ7ZoJgrE6QgZPUHokhZhL7YMoUgvEQXx6hqJwLDJGyEjMFCiQHqob0CD6KpYEQomkIoB/FxD8ziMIhbQa4Jv7ak7y2NfVbT0sN822asMG6yh03IP5A7G6NPJMDQdn5CRFALdq6MR9eInsYph/XBiF87ZcdVd8PRgSugaUFSYzr22boTYMoZB8p0RpGZcxmv1eMl7CQe9wUf8bsYD+S32nV8CfasZE0xJcmE9bsA8wuMA4Oo1c5osT3/Hxtq/josStwSnzepOzXkgOAH77NkehS1zzW2VskwSwIDAQAB",
   "license": "GPL-3.0",
   "scripts": {
-    "postinstall": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape,partition -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag > formsave/lib/deps.js && cp node_modules/webextension-polyfill/dist/browser-polyfill.min.js formsave/lib/browser-polyfill.min.js; npm run manifest:test",
+    "postinstall": "mkdir -p formsave/lib && lodash include=debounce,reverse,sortBy,values,escape,partition,merge,trim -s -p -o formsave/lib/lodashCustom.min.js && browserify -r vague-time -r fuzzy-search -r escape-html-template-tag -r match-pattern > formsave/lib/deps.js && cp node_modules/webextension-polyfill/dist/browser-polyfill.min.js formsave/lib/browser-polyfill.min.js; npm run manifest:test",
     "lint": "npm run manifest:test; standard && web-ext lint -s formsave",
     "pretest": "npm run lint && rm -f selenium-standalone.txt",
     "test": "wdio || (cat selenium-standalone.txt; exit 1)",
@@ -73,7 +74,7 @@
     "standard": "^10.0.2",
     "svgexport": "^0.3.2",
     "wdio-dot-reporter": "^0.0.9",
-    "wdio-firefox-profile-service": "^0.1.0",
+    "wdio-firefox-profile-service": "^0.1.1",
     "wdio-mocha-framework": "^0.5.9",
     "wdio-selenium-standalone-service": "^0.0.9",
     "web-ext": "^2.2.2",
@@ -82,6 +83,7 @@
   "dependencies": {
     "escape-html-template-tag": "^1.1.0",
     "fuzzy-search": "^2.0.1",
+    "match-pattern": "^0.0.2",
     "vague-time": "^2.4.0",
     "webextension-polyfill": "^0.2.1"
   },

@@ -1,15 +1,26 @@
-/* global _ */
+/* global _, config */
 
 const selector = 'textarea, *[contenteditable="true"]'
 let listened = []
-let debounceTimeout = getDebounceTimeout()
-setupHandlers()
+let options = config()
+setup()
 
 function toArray (nodeList) {
   return Array.prototype.slice.call(nodeList)
 }
 
-function setupHandlers (calledEvent) {
+async function setup () {
+  let regexes = (await options).excludes.regexes
+  for (let regex of regexes) {
+    try {
+      if ((new RegExp(regex)).test(document.URL)) return
+    } catch (err) {}
+  }
+  setupHandlers()
+}
+
+async function setupHandlers () {
+  let debounceTimeout = (await options).debounce
   let texts = toArray(document.querySelectorAll(selector))
   document.querySelectorAll('iframe').forEach(item => {
     try {
@@ -19,10 +30,8 @@ function setupHandlers (calledEvent) {
   for (let text of texts) {
     if (!listened.includes(text)) {
       listened.push(text)
-      debounceTimeout.then((timeout) => {
-        text.addEventListener('input', _.debounce(changeHandler, timeout), false)
-        text.addEventListener('change', _.debounce(changeHandler, timeout))
-      })
+      text.addEventListener('input', _.debounce(changeHandler, debounceTimeout), false)
+      text.addEventListener('change', _.debounce(changeHandler, debounceTimeout))
     }
   }
 }
@@ -37,15 +46,4 @@ function changeHandler (calledEvent) {
   }
   item.uniq = _.escape(item.url + '##' + item.id)
   browser.storage.local.set({[item.uniq]: item})
-}
-
-function getDebounceTimeout () {
-  let result = browser.storage.local.get('options')
-  return result.then((storage) => {
-    let options = storage.options
-    if (typeof options === 'undefined' || typeof options.debounce === 'undefined') {
-      return 200
-    }
-    return options.debounce
-  })
 }
