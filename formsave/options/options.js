@@ -66,13 +66,19 @@ function save () {
   })
 }
 
+function confirmation (question) {
+  // Chrome(ium) does not allow popups in the options page
+  if (/Chrom/.test(navigator.userAgent)) return true
+  return window.confirm(question)
+}
+
 function reset () {
-  if (!window.confirm('Reset all settings to addon defaults?')) return
+  if (!confirmation('Reset all settings to addon defaults?')) return
   browser.storage.local.set({options: configDefaults}).then(() => load())
 }
 
 function removeAll () {
-  if (!window.confirm('Delete all saved form data?')) return
+  if (!confirmation('Delete all saved form data?')) return
   let result = browser.storage.local.get('options')
   result.then((config) => {
     browser.storage.local.clear().then(() => {
