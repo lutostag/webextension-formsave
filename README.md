@@ -18,6 +18,6 @@
 
 ## Contribute
 * Please submit issues where the text from a textarea is not captured appropriately. (Include the url of the page)
-* If you are a developer and would like to help, please read through the [Contibutor Guidlines](https://github.com/lutostag/webextension-formsave/blob/master/doc/CONTRIBUTING.md)
+* If you are a developer and would like to help, please read through the [Contributor Guidelines](https://github.com/lutostag/webextension-formsave/blob/master/doc/CONTRIBUTING.md)
 
 Licensed under GPLv3, original upstream repo @ https://github.com/lutostag/webextension-formsave/
