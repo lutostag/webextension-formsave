@@ -22,7 +22,7 @@ class Reaper {
 class TableSorter { // eslint-disable-line
   constructor (callback) {
     this.callback = callback
-    this.sortBy = {column: null, reverse: false}
+    this.sortBy = { column: null, reverse: false }
     this.columns = {}
     for (let element of document.querySelectorAll('.column')) {
       let id = element.id
@@ -63,7 +63,7 @@ class TableSorter { // eslint-disable-line
         this.sortBy.column = null
       }
     } else {
-      this.sortBy = {column: id, reverse: this.columns[id].inverse}
+      this.sortBy = { column: id, reverse: this.columns[id].inverse }
     }
     this.updateCSS()
     this.callback()

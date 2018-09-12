@@ -63,7 +63,7 @@ function save () {
   if (options.reap.enable && !isNaN(options.reap.count)) {
     options.reap.offset = options.reap.count * lookup[options.reap.interval]
   }
-  browser.storage.local.set({options: options}).then(() => {
+  browser.storage.local.set({ options: options }).then(() => {
     excludes.value = options.excludes.text
   })
 }
@@ -76,7 +76,7 @@ function confirmation (question) {
 
 function reset () {
   if (!confirmation('Reset all settings to addon defaults?')) return
-  browser.storage.local.set({options: configDefaults}).then(() => load())
+  browser.storage.local.set({ options: configDefaults }).then(() => load())
 }
 
 function removeAll () {
@@ -94,7 +94,7 @@ function exportData () {
   let result = browser.storage.local.get()
   result.then((all) => {
     delete all['options']
-    let file = new window.File([JSON.stringify(all)], 'formsave.json', {type: 'application/json'})
+    let file = new window.File([JSON.stringify(all)], 'formsave.json', { type: 'application/json' })
     let url = window.URL.createObjectURL(file)
     exportAll.href = url
   })

@@ -45,5 +45,5 @@ function changeHandler (calledEvent) {
     content: target.value || target.textContent
   }
   item.uniq = _.escape(item.url + '##' + item.id)
-  browser.storage.local.set({[item.uniq]: item})
+  browser.storage.local.set({ [item.uniq]: item })
 }
