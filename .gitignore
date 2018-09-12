@@ -4,3 +4,4 @@ formsave/manifest.json
 selenium-standalone.txt
 secrets
 formsave.crx
+hs_err_pid*.log
